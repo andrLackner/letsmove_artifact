@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xc5585e0fc643bc70b32269a5241e859ac663c846150ef4ab2f6bc4c3f26b74ea rain_game
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

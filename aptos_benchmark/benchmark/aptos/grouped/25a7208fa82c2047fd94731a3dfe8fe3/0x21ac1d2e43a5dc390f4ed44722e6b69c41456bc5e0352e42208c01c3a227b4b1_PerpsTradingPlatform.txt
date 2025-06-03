@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x21ac1d2e43a5dc390f4ed44722e6b69c41456bc5e0352e42208c01c3a227b4b1 PerpsTradingPlatform
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

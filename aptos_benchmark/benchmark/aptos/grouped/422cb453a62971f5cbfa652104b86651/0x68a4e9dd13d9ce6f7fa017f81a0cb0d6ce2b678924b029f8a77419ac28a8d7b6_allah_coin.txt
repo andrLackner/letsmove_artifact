@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x68a4e9dd13d9ce6f7fa017f81a0cb0d6ce2b678924b029f8a77419ac28a8d7b6 allah_coin
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

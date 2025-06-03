@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x298ea197df2ba17e7ca9fb276856d95f886c1574b479c4483023ba9e483f31c8 aries_profile_deposit_glue_v2
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

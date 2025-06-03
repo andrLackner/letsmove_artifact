@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x59cb64b4807ac7318d066eeecf1dee9992f021033fea81e266eb0af54c302862 RollbitCoinToken
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

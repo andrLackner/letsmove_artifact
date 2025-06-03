@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x37cbb63f9f98a59823bff2a84443412cfd69ab41700f43c54cd754e68ac3e59c create_nft
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xb513573c733602196082e261a9a94ea693d72ff2da81ef9b5eab91218af7b817 lolita_coin
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

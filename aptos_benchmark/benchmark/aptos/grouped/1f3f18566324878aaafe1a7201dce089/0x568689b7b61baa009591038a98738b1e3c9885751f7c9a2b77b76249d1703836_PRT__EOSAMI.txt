@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x568689b7b61baa009591038a98738b1e3c9885751f7c9a2b77b76249d1703836 PRT__EOSAMI
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

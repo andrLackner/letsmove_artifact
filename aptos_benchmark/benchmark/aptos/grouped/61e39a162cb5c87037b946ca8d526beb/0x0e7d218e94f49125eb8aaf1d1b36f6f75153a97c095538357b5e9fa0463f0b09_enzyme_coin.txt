@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x0e7d218e94f49125eb8aaf1d1b36f6f75153a97c095538357b5e9fa0463f0b09 enzyme_coin
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

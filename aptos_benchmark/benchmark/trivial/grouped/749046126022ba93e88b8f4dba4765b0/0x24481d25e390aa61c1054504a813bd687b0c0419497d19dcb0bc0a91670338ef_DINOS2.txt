@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x24481d25e390aa61c1054504a813bd687b0c0419497d19dcb0bc0a91670338ef DINOS2
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

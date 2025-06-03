@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x5aab467624747605a9371def4d793a165f1c15f4025886b6f7f2d2995fb52ca5 XGamble
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

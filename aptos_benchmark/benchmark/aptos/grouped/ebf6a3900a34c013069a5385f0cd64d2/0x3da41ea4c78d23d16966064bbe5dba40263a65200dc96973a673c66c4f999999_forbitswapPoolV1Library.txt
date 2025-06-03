@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x3da41ea4c78d23d16966064bbe5dba40263a65200dc96973a673c66c4f999999 forbitswapPoolV1Library
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

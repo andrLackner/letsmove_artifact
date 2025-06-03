@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x90b46016c6c9350d108f922e558f9c808f2e32808298ffced8d5bac12aac911c jio_test_coin
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

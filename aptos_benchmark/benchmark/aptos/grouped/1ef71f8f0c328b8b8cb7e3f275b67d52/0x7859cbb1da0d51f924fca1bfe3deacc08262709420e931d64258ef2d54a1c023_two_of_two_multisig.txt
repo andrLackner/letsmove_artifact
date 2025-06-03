@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x7859cbb1da0d51f924fca1bfe3deacc08262709420e931d64258ef2d54a1c023 two_of_two_multisig
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

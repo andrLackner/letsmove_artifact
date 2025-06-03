@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x2c1be2a2ed8833a4295b65a96e4f06a0e61e8550fefd0297ce3c8c34c69720b8 wheat
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

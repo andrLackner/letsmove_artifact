@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x43962dccb1ae47e58ca3d726c39607e8545b5dd98d39d6618b2c903cacd61e08 Basic_DEX_Order_Book
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

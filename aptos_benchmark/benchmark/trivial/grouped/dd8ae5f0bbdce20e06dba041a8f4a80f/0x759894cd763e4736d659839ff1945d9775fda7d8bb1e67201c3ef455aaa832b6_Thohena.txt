@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x759894cd763e4736d659839ff1945d9775fda7d8bb1e67201c3ef455aaa832b6 Thohena
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

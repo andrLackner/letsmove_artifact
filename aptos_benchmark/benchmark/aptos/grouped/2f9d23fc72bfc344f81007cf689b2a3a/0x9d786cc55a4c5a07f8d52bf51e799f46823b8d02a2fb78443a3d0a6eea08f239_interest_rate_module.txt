@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x9d786cc55a4c5a07f8d52bf51e799f46823b8d02a2fb78443a3d0a6eea08f239 interest_rate_module
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

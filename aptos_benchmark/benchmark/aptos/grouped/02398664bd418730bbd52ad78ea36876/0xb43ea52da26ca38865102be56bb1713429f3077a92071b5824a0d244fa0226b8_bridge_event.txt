@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xb43ea52da26ca38865102be56bb1713429f3077a92071b5824a0d244fa0226b8 bridge_event
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

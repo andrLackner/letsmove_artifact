@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xaee106a8f1a1f87484b0b4c7c87b41232830b946ae0927aca97355db1515b830 cent_orship_resistantap
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xae0c9ac95b3da32985dc931b9e958a7de8d6858b7340db14dcf92af86c724dfc candymachine_core
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

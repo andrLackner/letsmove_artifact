@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x0aacef8120afce15468b9b77b041d0f0f932c8f93ecb502a1d5e19527118ed27 H2OptOS
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

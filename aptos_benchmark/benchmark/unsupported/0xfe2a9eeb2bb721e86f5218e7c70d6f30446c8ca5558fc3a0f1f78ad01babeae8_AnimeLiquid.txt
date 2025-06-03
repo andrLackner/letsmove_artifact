@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xfe2a9eeb2bb721e86f5218e7c70d6f30446c8ca5558fc3a0f1f78ad01babeae8 AnimeLiquid
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

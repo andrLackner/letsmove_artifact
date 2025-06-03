@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x03aedc7ad93a2caac119512857dad3f5f8930b0d20a808fd5411920bc3e3a551 LABUBU
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

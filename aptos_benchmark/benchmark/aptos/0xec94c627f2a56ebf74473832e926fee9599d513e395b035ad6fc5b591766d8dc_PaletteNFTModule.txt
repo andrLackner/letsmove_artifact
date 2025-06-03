@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xec94c627f2a56ebf74473832e926fee9599d513e395b035ad6fc5b591766d8dc PaletteNFTModule
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

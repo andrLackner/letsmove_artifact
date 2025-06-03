@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x2b182b917b4624cdbcaf984ae1a19a600e32c2f826e1389ff77649b3362965a6 Aptos_Pornhub
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

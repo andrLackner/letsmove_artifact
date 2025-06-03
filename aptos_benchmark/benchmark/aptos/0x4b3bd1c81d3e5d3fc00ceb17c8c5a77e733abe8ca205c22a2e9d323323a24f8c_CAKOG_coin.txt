@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x4b3bd1c81d3e5d3fc00ceb17c8c5a77e733abe8ca205c22a2e9d323323a24f8c CAKOG_coin
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

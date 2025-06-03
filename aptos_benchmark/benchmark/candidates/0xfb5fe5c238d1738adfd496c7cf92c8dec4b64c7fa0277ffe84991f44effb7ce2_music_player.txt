@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xfb5fe5c238d1738adfd496c7cf92c8dec4b64c7fa0277ffe84991f44effb7ce2 music_player
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

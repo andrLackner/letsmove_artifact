@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x3baf0ea1de8b2285fc03798e70a4ec2dd1b8d3a7127ba5f846dabe72b00a2cf1 LightGameVault
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

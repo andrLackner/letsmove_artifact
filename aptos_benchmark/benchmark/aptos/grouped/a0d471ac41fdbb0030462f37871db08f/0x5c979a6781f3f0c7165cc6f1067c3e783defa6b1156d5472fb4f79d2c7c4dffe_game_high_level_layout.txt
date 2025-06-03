@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x5c979a6781f3f0c7165cc6f1067c3e783defa6b1156d5472fb4f79d2c7c4dffe game_high_level_layout
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

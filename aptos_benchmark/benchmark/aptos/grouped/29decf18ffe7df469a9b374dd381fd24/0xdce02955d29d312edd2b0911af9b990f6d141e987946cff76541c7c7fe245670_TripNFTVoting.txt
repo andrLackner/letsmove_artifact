@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xdce02955d29d312edd2b0911af9b990f6d141e987946cff76541c7c7fe245670 TripNFTVoting
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

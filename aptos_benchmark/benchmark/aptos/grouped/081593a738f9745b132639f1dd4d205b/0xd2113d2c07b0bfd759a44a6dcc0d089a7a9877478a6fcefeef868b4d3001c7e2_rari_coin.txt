@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xd2113d2c07b0bfd759a44a6dcc0d089a7a9877478a6fcefeef868b4d3001c7e2 rari_coin
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

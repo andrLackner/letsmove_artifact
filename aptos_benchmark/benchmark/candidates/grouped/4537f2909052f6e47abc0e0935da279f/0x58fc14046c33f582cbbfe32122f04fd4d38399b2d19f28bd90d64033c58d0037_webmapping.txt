@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x58fc14046c33f582cbbfe32122f04fd4d38399b2d19f28bd90d64033c58d0037 webmapping
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

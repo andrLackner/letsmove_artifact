@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x817dce1c294d58e9306872bd75c7743819a3dce31ba6dcc30db71a3d36dcdd8f nft_market
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

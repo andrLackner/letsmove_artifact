@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x95275448fbca2c79357a28d9a8e0cb58c486a96a3d4b40d90469ba23e7152cf6 identity_card
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

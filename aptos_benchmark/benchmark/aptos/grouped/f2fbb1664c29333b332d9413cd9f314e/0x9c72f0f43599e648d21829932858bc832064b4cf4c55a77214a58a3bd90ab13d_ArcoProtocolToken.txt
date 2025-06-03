@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x9c72f0f43599e648d21829932858bc832064b4cf4c55a77214a58a3bd90ab13d ArcoProtocolToken
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

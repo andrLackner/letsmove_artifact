@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x9a08e72f80298431a11f644c26d41a5d2ff938f6c021d49dc1e9c90f39ffadbf sdr_coin
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

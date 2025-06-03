@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x418020a53a85d126f57456e9d0704f34dc2c975d6e0b7f732c56872a2dced94d chainge_wrapped_coin
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

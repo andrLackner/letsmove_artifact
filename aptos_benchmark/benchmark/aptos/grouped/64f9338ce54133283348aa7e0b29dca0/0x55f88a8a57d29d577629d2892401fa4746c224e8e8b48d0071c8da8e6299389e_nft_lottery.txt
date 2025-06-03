@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x55f88a8a57d29d577629d2892401fa4746c224e8e8b48d0071c8da8e6299389e nft_lottery
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

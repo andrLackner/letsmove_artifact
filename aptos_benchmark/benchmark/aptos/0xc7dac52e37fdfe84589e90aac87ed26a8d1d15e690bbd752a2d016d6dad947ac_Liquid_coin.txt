@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xc7dac52e37fdfe84589e90aac87ed26a8d1d15e690bbd752a2d016d6dad947ac Liquid_coin
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

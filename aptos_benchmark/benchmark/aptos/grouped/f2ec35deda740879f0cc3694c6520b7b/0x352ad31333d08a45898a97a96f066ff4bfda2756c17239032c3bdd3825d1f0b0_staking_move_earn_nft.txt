@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x352ad31333d08a45898a97a96f066ff4bfda2756c17239032c3bdd3825d1f0b0 staking_move_earn_nft
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

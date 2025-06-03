@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x57fb9973f086efe316d2cd3a731df0224cb5e86d9f77938832d80ad12fdc70e9 BIRDS
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

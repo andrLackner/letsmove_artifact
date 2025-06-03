@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x9b59327ace0df9ed627ace8ad78e5f7502767118260663948c3e55d3e4fbcd85 Collateralized_Crypto_Assets
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

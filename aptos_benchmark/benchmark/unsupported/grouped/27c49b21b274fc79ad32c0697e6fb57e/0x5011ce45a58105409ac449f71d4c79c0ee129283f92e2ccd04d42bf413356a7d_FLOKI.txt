@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x5011ce45a58105409ac449f71d4c79c0ee129283f92e2ccd04d42bf413356a7d FLOKI
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

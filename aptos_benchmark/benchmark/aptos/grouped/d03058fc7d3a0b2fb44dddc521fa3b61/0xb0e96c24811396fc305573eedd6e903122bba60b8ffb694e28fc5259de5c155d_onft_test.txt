@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xb0e96c24811396fc305573eedd6e903122bba60b8ffb694e28fc5259de5c155d onft_test
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

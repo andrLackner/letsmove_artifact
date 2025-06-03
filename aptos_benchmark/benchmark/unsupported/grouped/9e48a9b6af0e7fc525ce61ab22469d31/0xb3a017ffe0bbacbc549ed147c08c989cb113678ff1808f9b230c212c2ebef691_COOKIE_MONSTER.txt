@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xb3a017ffe0bbacbc549ed147c08c989cb113678ff1808f9b230c212c2ebef691 COOKIE_MONSTER
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

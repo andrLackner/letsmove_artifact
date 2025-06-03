@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xd48c3af019c3f69b0c27ff0f6f8c07f493bc4e61d799bc53333208dd3f5e7d67 AptosHalloweenToken
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xccf362dc5aba554e80364b09099c385b9b6034e6cd6b24ab0d2241239c1a0bd6 MAGNET
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

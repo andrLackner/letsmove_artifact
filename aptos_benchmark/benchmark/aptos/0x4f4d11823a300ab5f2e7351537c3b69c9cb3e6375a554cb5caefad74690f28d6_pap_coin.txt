@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x4f4d11823a300ab5f2e7351537c3b69c9cb3e6375a554cb5caefad74690f28d6 pap_coin
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

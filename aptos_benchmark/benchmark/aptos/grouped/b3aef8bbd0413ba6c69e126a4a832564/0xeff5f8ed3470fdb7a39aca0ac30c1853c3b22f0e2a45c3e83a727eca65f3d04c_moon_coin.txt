@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xeff5f8ed3470fdb7a39aca0ac30c1853c3b22f0e2a45c3e83a727eca65f3d04c moon_coin
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

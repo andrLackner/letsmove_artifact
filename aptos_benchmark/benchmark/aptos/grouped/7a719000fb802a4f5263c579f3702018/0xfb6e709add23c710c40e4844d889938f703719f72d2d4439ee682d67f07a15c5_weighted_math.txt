@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xfb6e709add23c710c40e4844d889938f703719f72d2d4439ee682d67f07a15c5 weighted_math
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

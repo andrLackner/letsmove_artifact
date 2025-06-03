@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x29f23869aa9be51d08cf2e270e6fc2cecd0125e6f5d4dbc3c1dfa18557d4fe68 move_kitties_token
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x712b69d2a5b897be3398361eed3abd812afa7e1fea1d580526ae1ae95c105199 STRaway_rust_direct_clone
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

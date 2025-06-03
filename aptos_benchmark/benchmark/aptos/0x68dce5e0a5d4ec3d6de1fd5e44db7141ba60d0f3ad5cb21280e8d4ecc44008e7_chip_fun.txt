@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x68dce5e0a5d4ec3d6de1fd5e44db7141ba60d0f3ad5cb21280e8d4ecc44008e7 chip_fun
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

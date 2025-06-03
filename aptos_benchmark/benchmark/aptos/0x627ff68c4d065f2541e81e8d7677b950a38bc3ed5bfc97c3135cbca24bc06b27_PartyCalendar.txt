@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x627ff68c4d065f2541e81e8d7677b950a38bc3ed5bfc97c3135cbca24bc06b27 PartyCalendar
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

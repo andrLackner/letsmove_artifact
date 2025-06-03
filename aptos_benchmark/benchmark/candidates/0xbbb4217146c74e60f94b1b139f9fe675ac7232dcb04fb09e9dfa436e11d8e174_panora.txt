@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0xbbb4217146c74e60f94b1b139f9fe675ac7232dcb04fb09e9dfa436e11d8e174 panora
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

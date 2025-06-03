@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x0ad0f7141f626c07db99a7fe5b864fde080bc4966c144d88f6f14ac4af391f30 eid_model_pair
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

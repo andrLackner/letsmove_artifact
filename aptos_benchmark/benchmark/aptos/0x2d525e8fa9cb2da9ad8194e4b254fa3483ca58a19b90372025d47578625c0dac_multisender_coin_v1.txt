@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x2d525e8fa9cb2da9ad8194e4b254fa3483ca58a19b90372025d47578625c0dac multisender_coin_v1
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

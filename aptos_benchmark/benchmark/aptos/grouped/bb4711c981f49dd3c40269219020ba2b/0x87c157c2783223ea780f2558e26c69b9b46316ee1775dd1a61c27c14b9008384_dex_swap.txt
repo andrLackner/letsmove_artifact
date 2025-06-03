@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x87c157c2783223ea780f2558e26c69b9b46316ee1775dd1a61c27c14b9008384 dex_swap
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.

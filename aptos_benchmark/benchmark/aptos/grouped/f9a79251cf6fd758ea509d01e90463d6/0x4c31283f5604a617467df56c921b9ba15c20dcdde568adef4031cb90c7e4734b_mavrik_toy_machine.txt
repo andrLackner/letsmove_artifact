@@ -1,0 +1,14 @@
+
+================================================================================
+                             Source Code Access Notice
+================================================================================
+
+This source code is either subject to a license that prohibits redistribution, or
+its license could not be clearly identified. However, you can manually retrieve
+the source code for this module using the get_benchmark.py script by running
+the following command:
+
+    python3 get_benchmark.py 0x4c31283f5604a617467df56c921b9ba15c20dcdde568adef4031cb90c7e4734b mavrik_toy_machine
+
+If you intend to use this data solely for scientific purposes, you are also
+welcome to contact one of the authors.
