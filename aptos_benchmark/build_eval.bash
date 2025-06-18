@@ -64,6 +64,8 @@ function getModName() {
 
     if [[ $mod = "math" ]] && [[ "$acc" =~ ^0x5307ab72.*$ ]]; then
         echo "math2"
+    elif [[ $mod = "contract" ]]; then
+        echo "nav"
     else
         echo "$mod"
     fi
@@ -140,7 +142,7 @@ do
     echo -e "${GREEN}[loaded] ${NC} $name (${acc::10}...)"
 
     patch -s $file < $patch
-    echo -e "${GREEN}[patched]${NC} $mod (${acc::10}...)"
+    echo -e "${GREEN}[patched]${NC} $name (${acc::10}...)"
 done
 
 rm -R $SCRIPT_DIR/tmp

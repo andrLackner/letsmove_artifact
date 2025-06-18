@@ -1,0 +1,40 @@
+1c1,2
+< module NAV::contract {
+---
+> #[evm_contract]
+> module Evm::nav {
+3c4
+<     use std::signer;
+---
+>     use Evm::Evm::{protection_layer_signer_address, sign};
+12c13,15
+<     public fun init_nav(account: &signer) {
+---
+>     #[callable(sig=b"initNav()")]
+>     public fun init_nav() {
+>         let account_addr = protection_layer_signer_address();
+17c20
+<         move_to(account, nav_data);
+---
+>         move_to(&sign(account_addr), nav_data);
+21,22c24,26
+<     public fun update_asset_value(account: &signer, new_asset_value: u64) acquires NAVData {
+<         let nav_data = borrow_global_mut<NAVData>(signer::address_of(account));
+---
+>     #[callable(sig=b"updateAssetValue(uint64)")]
+>     public fun update_asset_value(new_asset_value: u64) acquires NAVData {
+>         let nav_data = borrow_global_mut<NAVData>(protection_layer_signer_address());
+27,28c31,33
+<     public fun update_token_supply(account: &signer, new_token_supply: u64) acquires NAVData {
+<         let nav_data = borrow_global_mut<NAVData>(signer::address_of(account));
+---
+>     #[callable(sig=b"updateTokenSupply(uint64)")]
+>     public fun update_token_supply(new_token_supply: u64) acquires NAVData {
+>         let nav_data = borrow_global_mut<NAVData>(protection_layer_signer_address());
+33,34c38,40
+<     public fun calculate_nav(account: &signer): u64 acquires NAVData {
+<         let nav_data = borrow_global<NAVData>(signer::address_of(account));
+---
+>     #[callable(sig=b"calculateNav() returns (uint64)")]
+>     public fun calculate_nav(): u64 acquires NAVData {
+>         let nav_data = borrow_global<NAVData>(protection_layer_signer_address());
