@@ -1,0 +1,47 @@
+0a1,2
+> #[evm_contract]
+> module Evm::circle_intersections {
+2,5d3
+< 
+< 
+< module Verse_000001::Circle_Intersections_Module {
+< 	
+23c21,23
+< 	#[view] public fun circles_intersect (
+---
+> 
+> 	#[callable(sig=b"circlesIntersect(uint64,uint64,uint64,uint64,uint64,uint64) returns (bool)")]
+> 	public fun circles_intersect (
+32d31
+< 		use std::math64;
+41,42c40,41
+< 		let c_sqr = math64::pow (a, 2) + math64::pow (b, 2);
+< 		let rr_sqr = math64::pow (c1_r + c2_r, 2);
+---
+> 		let c_sqr = a*a + b*b;
+> 		let rr_sqr = (c1_r + c2_r) * (c1_r + c2_r);
+50,59c49,51
+< 	#[test] public fun circles_intersect__monitor_1 () {
+< 		/*
+< 			<svg xmlns='http://www.w3.org/2000/svg' viewBox="0 0 100 100">
+< 				<g style="fill: #000000; fill-opacity: 1;">
+< 					<circle cx="50" cy="50" r="2" />
+< 					<circle cx="48" cy="48" r="2" />
+< 				</g>
+< 			</svg>
+< 		*/
+< 		
+---
+> 
+> 	#[callable(sig=b"circlesIntersectMonitor()")]
+> 	public fun circles_intersect__monitor_1 () {		
+69c61
+< 		if (a > b) { return a - b; };
+---
+> 		if (a > b) { return a - b };
+71,75d62
+< 	}
+< 	#[test] public fun distance__monitor_1 () {
+< 		assert! (distance (1,2) == 1, 1);
+< 		assert! (distance (2,1) == 1, 1);
+< 		assert! (distance (2,2) == 0, 1);

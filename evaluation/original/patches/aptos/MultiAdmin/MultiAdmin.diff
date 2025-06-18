@@ -1,0 +1,33 @@
+1,2c1,3
+< module sample::MultiAdmin {
+<     use std::signer;
+---
+> #[evm_contract]
+> module Evm::MultiAdmin {
+>     use Evm::Evm::{sender, sign};
+8,11c9,13
+<     fun init_module(sender: &signer) {
+<         let curr_signer = signer::address_of(sender);
+<         move_to(sender, AdminData {
+<             admin: curr_signer,
+---
+>     #[callable(sig=b"initialize()")]
+>     fun init_module() {
+>         let sender_addr = sender();
+>         move_to(&sign(sender_addr), AdminData {
+>             admin: sender_addr,
+15,17c17,21
+<     public entry fun set_admin(sender: &signer, new_admin: address) acquires AdminData {
+<         let admin_data = borrow_global_mut<AdminData>(@sample);
+<         assert!(admin_data.admin == signer::address_of(sender), 0);
+---
+>     #[callable(sig=b"setAdmin(address)")]
+>     public entry fun set_admin(new_admin: address) acquires AdminData {
+>         let sender = sender();
+>         let admin_data = borrow_global_mut<AdminData>(sender);
+>         assert!(admin_data.admin == sender, 0);
+21c25
+< }
+---
+> }
+\ No newline at end of file

@@ -5,7 +5,7 @@ require("@nomiclabs/hardhat-truffle5");
 module.exports = {
   gasReporter: {
     enabled: true,
-    outputJSONFile: "./results/aptos/irm.json",
+    outputJSONFile: "./results/aptos/gas.json",
     outputJSON: true,
   },
   solidity: {

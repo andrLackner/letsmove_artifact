@@ -1,0 +1,33 @@
+1,3c1,2
+< /// Implementation of FixedPoint u64 in Move language.
+< module uq64x64::uq64x64 {
+<     // Error codes.
+---
+> #[evm_contract]
+> module Evm::uq64x64 {
+20a20
+>     #[abi_struct(sig=b"UQ64x64(uint128)")]
+25a26
+>     #[callable(sig=b"encode(uint64) returns (UQ64x64)")]
+36a38
+>     #[callable(sig=b"decode(UQ64x64) returns (uint64)")]
+44a47
+>     #[callable(sig=b"toU128(UQ64x64) returns (uint128)")]
+52a56
+>     #[callable(sig=b"mul(UQ64x64,uint64) returns (UQ64x64)")]
+63a68
+>     #[callable(sig=b"div(UQ64x64,uint64) returns (UQ64x64)")]
+75a81
+>     #[callable(sig=b"fraction(uint64,uint64) returns (UQ64x64)")]
+89a96
+>     #[callable(sig=b"compare(UQ64x64,UQ64x64) returns (uint8)")]
+91c98
+<     public fun compare(left: &UQ64x64, right: &UQ64x64): u8 {
+---
+>     public fun compare(left: UQ64x64, right: UQ64x64): u8 {
+105a113
+>     #[callable(sig=b"isZero(UQ64x64) returns (bool)")]
+107c115
+<     public fun is_zero(uq: &UQ64x64): bool {
+---
+>     public fun is_zero(uq: UQ64x64): bool {

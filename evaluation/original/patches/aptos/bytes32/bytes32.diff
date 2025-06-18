@@ -1,0 +1,45 @@
+1,2c1,2
+< /// This is a wrapper for vector<u8> that enforces a length of 32 bytes
+< module endpoint_v2_common::bytes32 {
+---
+> #[evm_contract]
+> module Evm::bytes32 {
+4d3
+<     use std::from_bcs;
+7c6
+<     public inline fun ZEROS_32_BYTES(): vector<u8> {
+---
+>     public fun ZEROS_32_BYTES(): vector<u8> {
+10a10
+>     #[abi_struct(sig=b"Bytes32(bytes)")]
+14a15
+>     #[callable(sig=b"zeroBytes32() returns (Bytes32)")]
+19a21
+>     #[callable(sig=b"ffBytes32() returns (Bytes32)")]
+24c26,27
+< 
+---
+>  
+>     #[callable(sig=b"isZero(Bytes32) returns (bool)")]
+26c29
+<     public fun is_zero(bytes32: &Bytes32): bool {
+---
+>     public fun is_zero(bytes32: Bytes32): bool {
+29a33
+>     #[callable(sig=b"toBytes32(bytes) returns (Bytes32)")]
+36a41
+>     #[callable(sig=b"fromBytes32(Bytes32) returns (bytes)")]
+41a47
+>     #[callable(sig=b"fromAddress(address) returns (Bytes32)")]
+46,56d51
+<     }
+< 
+<     /// Converts a Bytes32 to an address
+<     public fun to_address(bytes32: Bytes32): address {
+<         from_bcs::to_address(bytes32.bytes)
+<     }
+< 
+<     /// Get the keccak256 hash of the given bytes
+<     public fun keccak256(bytes: vector<u8>): Bytes32 {
+<         let hash = std::aptos_hash::keccak256(bytes);
+<         to_bytes32(hash)

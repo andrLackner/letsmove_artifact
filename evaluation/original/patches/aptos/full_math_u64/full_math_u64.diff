@@ -1,0 +1,23 @@
+1c1,4
+< module integer_mate::full_math_u64 {
+---
+> #[evm_contract]
+> module Evm::full_math_u64 {
+> 
+>     #[callable(sig=b"mulDivFloor(uint64,uint64,uint64) returns (uint64)")]
+6a10
+>     #[callable(sig=b"mulDivRound(uint64,uint64,uint64) returns (uint64)")]
+11a16
+>     #[callable(sig=b"mulDivCeil(uint64,uint64,uint64) returns (uint64)")]
+16a22
+>     #[callable(sig=b"mulShr(uint64,uint64,uint8) returns (uint64)")]
+21a28
+>     #[callable(sig=b"mulShl(uint64,uint64,uint8) returns (uint64)")]
+26a34
+>     #[callable(sig=b"fullMul(uint64,uint64) returns (uint128)")]
+30,31c38
+< }
+< 
+---
+> }
+\ No newline at end of file

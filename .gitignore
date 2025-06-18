@@ -1,3 +1,5 @@
 lets-move-to-evm/
-evaluation/contracts/aptos/*
-evaluation/results/*
+evaluation/irm/contracts/aptos/*
+evaluation/irm/results/*
+evaluation/original/contracts/aptos/*
+evaluation/original/results/*

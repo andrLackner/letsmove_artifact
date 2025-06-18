@@ -1,0 +1,101 @@
+1,7c1,2
+< 
+< 
+< module Verse_000001::Module_Domain_IV_Picture {
+< 	#[view] public fun Volitions () : std::string::String { 
+< 		Verse_000001::Module_Volitions::Volitions_01 () 
+< 	}
+< 	
+---
+> #[evm_contract]
+> module Evm::Picture {
+9d3
+< 	use std::string::{ String };
+17c11,12
+< 	#[view] public fun Vectorize (_meal : u64) : String {
+---
+> 	#[callable(sig=b"vectorize(uint64) returns (string)")]
+>     public fun Vectorize (_meal : u64) : vector<u8> {
+33c28
+< 		std::string::utf8 (vectors)		
+---
+> 		vectors
+53c48,49
+< 	#[view] public fun theoretical_d1_values (
+---
+> 	#[callable(sig=b"theoreticalD1Values(uint64,uint64,uint64) returns (uint64,uint64)")]
+>     public fun theoretical_d1_values (
+137,164d132
+< 	#[view] public fun theoretical_d2_values (
+< 		width : u64,
+< 		outer_circle_radius : u64,
+< 		_inner_circle_radius : u64,
+< 		d1 : u64
+< 	) : (u64, u64) {
+< 		use std::math64;
+< 		
+< 		let mid_spot = (width / 2);
+< 		
+< 		let a;
+< 		if (d1 >= mid_spot) {
+< 			a = d1 - mid_spot;
+< 		}
+< 		else {
+< 			a = mid_spot - d1; 
+< 		};
+< 		
+< 		let c = outer_circle_radius;
+< 		
+< 
+< 		let b = math64::sqrt (
+< 			math64::pow (c, 2) - math64::pow (a, 2)
+< 		);
+< 		if (math64::pow (b, 2) > (math64::pow (c, 2) - math64::pow (a, 2))) {
+< 			// Theoretically this should not occur.
+< 			abort 0xF0F0		
+< 		};
+166,173d133
+< 		
+< 		(mid_spot - b, mid_spot + b)
+< 	}
+< 	#[test] public fun theoretical_d2_values__monitor_1 () {
+< 		let (start, end) = theoretical_d2_values (100, 40, 1, 70);
+< 		assert! (start == 16, start);
+< 		assert! (end == 84, end);		
+< 	}
+175,176c135,137
+< 	#[view] public fun distance (a : u64, b : u64) : u64 {
+< 		if (a > b) { return a - b; };
+---
+>     #[callable(sig=b"distance(uint64,uint64) returns (uint64)")]
+>     public fun distance (a : u64, b : u64) : u64 {
+> 		if (a > b) { return a - b };
+179c140,142
+< 	#[test] public fun distance__monitor_1 () {
+---
+> 
+> 	#[test] 
+>     public fun distance__monitor_1 () {
+203c166,167
+< 	#[view] public fun circles_intersect (
+---
+>     #[callable(sig=b"circlesIntersect(uint64,uint64,uint64,uint64,uint64,uint64) returns (bool)")]
+>     public fun circles_intersect (
+212d175
+< 		use std::math64;
+221,222c184,185
+< 		let c_sqr = math64::pow (a, 2) + math64::pow (b, 2);
+< 		let rr_sqr = math64::pow (c1_r + c2_r, 2);
+---
+> 		let c_sqr = (a*a) + b*b;
+> 		let rr_sqr = (c1_r + c2_r)*(c1_r + c2_r);
+230c193,195
+< 	#[test] public fun circles_intersect__monitor_1 () {
+---
+> 
+> 	#[test] 
+>     public fun circles_intersect__monitor_1 () {
+245,247d209
+< 	
+< 
+< 	

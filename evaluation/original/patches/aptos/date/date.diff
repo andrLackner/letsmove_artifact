@@ -1,0 +1,320 @@
+1,17c1,2
+< // SPDX-License-Identifier: MIT
+< // Based on: https://github.com/bokkypoobah/BokkyPooBahsDateTimeLibrary
+< 
+< /// @title date
+< /// @dev Tested date range 1970/01/01 to 2345/12/31
+< /// Conventions:
+< /// Unit      | Range         | Notes
+< /// :-------- |:-------------:|:-----
+< /// timestamp | >= 0          | Unix timestamp, number of seconds since 1970/01/01 00:00:00 UTC
+< /// year      | 1970 ... 2345 |
+< /// month     | 1 ... 12      |
+< /// day       | 1 ... 31      |
+< /// hour      | 0 ... 23      |
+< /// minute    | 0 ... 59      |
+< /// second    | 0 ... 59      |
+< /// dayOfWeek | 1 ... 7       | 1 = Monday, ..., 7 = Sunday
+< module options_factory::date {
+---
+> #[evm_contract]
+> module Evm::date {
+20,31c5,16
+<     const SECONDS_PER_DAY: u64 = 24 * 60 * 60;
+<     const SECONDS_PER_HOUR: u64 = 60 * 60;
+<     const SECONDS_PER_MINUTE: u64 = 60;
+<     const OFFSET19700101: u64 = 2440588;
+< 
+<     const DOW_MON: u64 = 1;
+<     const DOW_TUE: u64 = 2;
+<     const DOW_WED: u64 = 3;
+<     const DOW_THU: u64 = 4;
+<     const DOW_FRI: u64 = 5;
+<     const DOW_SAT: u64 = 6;
+<     const DOW_SUN: u64 = 7;
+---
+>     const SECONDS_PER_DAY: u128 = 24 * 60 * 60;
+>     const SECONDS_PER_HOUR: u128 = 60 * 60;
+>     const SECONDS_PER_MINUTE: u128 = 60;
+>     const OFFSET19700101: u128 = 2440588;
+> 
+>     const DOW_MON: u128 = 1;
+>     const DOW_TUE: u128 = 2;
+>     const DOW_WED: u128 = 3;
+>     const DOW_THU: u128 = 4;
+>     const DOW_FRI: u128 = 5;
+>     const DOW_SAT: u128 = 6;
+>     const DOW_SUN: u128 = 7;
+51c36,37
+<     public fun days_from_date(_year: u64, _month: u64, _day: u64): u64 {
+---
+>     #[callable(sig=b"daysFromDate(uint128,uint128,uint128) returns (uint128)")]
+>     public fun days_from_date(_year: u128, _month: u128, _day: u128): u128 {
+81c67,68
+<     public fun days_to_date(days: u64): (u64, u64, u64) {
+---
+>     #[callable(sig=b"daysToDate(uint128) returns (uint128,uint128,uint128)")]
+>     public fun days_to_date(days: u128): (u128, u128, u128) {
+96c83,84
+<     public fun timestamp_from_date(year: u64, month: u64, day: u64): u64 {
+---
+>     #[callable(sig=b"timestampFromDate(uint128,uint128,uint128) returns (uint128)")]
+>     public fun timestamp_from_date(year: u128, month: u128, day: u128): u128 {
+100c88,89
+<     public fun timestamp_from_date_time(year: u64, month: u64, day: u64, hour: u64, minute: u64, second: u64): u64 {
+---
+>     #[callable(sig=b"timestampFromDateTime(uint128,uint128,uint128,uint128,uint128,uint128) returns (uint128)")]
+>     public fun timestamp_from_date_time(year: u128, month: u128, day: u128, hour: u128, minute: u128, second: u128): u128 {
+104,105c93,95
+<     public fun timestamp_to_date(timestamp: u64): (u64, u64, u64) {
+<         days_to_date(timestamp / SECONDS_PER_DAY)
+---
+>     #[callable(sig=b"timestampToDate(uint128) returns (uint128,uint128,uint128)")]
+>     public fun timestamp_to_date(tmstmp: u128): (u128, u128, u128) {
+>         days_to_date(tmstmp / SECONDS_PER_DAY)
+108,110c98,101
+<     public fun timestamp_to_date_time(timestamp: u64): (u64, u64, u64, u64, u64, u64) {
+<         let (year, month, day) = days_to_date(timestamp / SECONDS_PER_DAY);
+<         let secs = timestamp % SECONDS_PER_DAY;
+---
+>     #[callable(sig=b"timestampToDateTime(uint128) returns (uint128,uint128,uint128,uint128,uint128,uint128)")]
+>     public fun timestamp_to_date_time(tmstmp: u128): (u128, u128, u128, u128, u128, u128) {
+>         let (year, month, day) = days_to_date(tmstmp / SECONDS_PER_DAY);
+>         let secs = tmstmp % SECONDS_PER_DAY;
+118c109,110
+<     public fun is_valid_date(year: u64, month: u64, day: u64): bool {
+---
+>     #[callable(sig=b"isValidDate(uint128,uint128,uint128) returns (bool)")]
+>     public fun is_valid_date(year: u128, month: u128, day: u128): bool {
+126c118,119
+<     public fun is_valid_date_time(year: u64, month: u64, day: u64, hour: u64, minute: u64, second: u64): bool {
+---
+>     #[callable(sig=b"isValidDateTime(uint128,uint128,uint128,uint128,uint128,uint128) returns (bool)")]
+>     public fun is_valid_date_time(year: u128, month: u128, day: u128, hour: u128, minute: u128, second: u128): bool {
+130,131c123,125
+<     public fun is_timestamp_leap_year(timestamp: u64): bool {
+<         let (year, _, _) = days_to_date(timestamp / SECONDS_PER_DAY);
+---
+>     #[callable(sig=b"isTimestampLeapYear(uint128) returns (bool)")]
+>     public fun is_timestamp_leap_year(tmstmp: u128): bool {
+>         let (year, _, _) = days_to_date(tmstmp / SECONDS_PER_DAY);
+135c129,130
+<     public fun is_year_leap_year(year: u64): bool {
+---
+>     #[callable(sig=b"isYearLeapYear(uint128) returns (bool)")]
+>     public fun is_year_leap_year(year: u128): bool {
+139,140c134,136
+<     public fun is_weekday(timestamp: u64): bool {
+<         get_day_of_week(timestamp) <= DOW_FRI
+---
+>     #[callable(sig=b"isWeekday(uint128) returns (bool)")]
+>     public fun is_weekday(tmstmp: u128): bool {
+>         get_day_of_week(tmstmp) <= DOW_FRI
+143,144c139,141
+<     public fun is_weekend(timestamp: u64): bool {
+<         get_day_of_week(timestamp) >= DOW_SAT
+---
+>     #[callable(sig=b"isWeekend(uint128) returns (bool)")]
+>     public fun is_weekend(tmstmp: u128): bool {
+>         get_day_of_week(tmstmp) >= DOW_SAT
+147,148c144,146
+<     public fun get_days_in_timestamp_month(timestamp: u64): u64 {
+<         let (year, month, _) = days_to_date(timestamp / SECONDS_PER_DAY);
+---
+>     #[callable(sig=b"getDaysInTimestampMonth(uint128) returns (uint128)")]
+>     public fun get_days_in_timestamp_month(tmstmp: u128): u128 {
+>         let (year, month, _) = days_to_date(tmstmp / SECONDS_PER_DAY);
+152c150,151
+<     public fun get_days_in_year_month(year: u64, month: u64): u64 {
+---
+>     #[callable(sig=b"getDaysInYearMonth(uint128,uint128) returns (uint128)")]
+>     public fun get_days_in_year_month(year: u128, month: u128): u128 {
+157a157
+>     #[callable(sig=b"getDayOfWeek(uint128) returns (uint128)")]
+159,160c159,160
+<     public fun get_day_of_week(timestamp: u64): u64 {
+<         let _days = timestamp / SECONDS_PER_DAY;
+---
+>     public fun get_day_of_week(tmstmp: u128): u128 {
+>         let _days = tmstmp / SECONDS_PER_DAY;
+164,165c164,166
+<     public fun get_year(timestamp: u64): u64 {
+<         let (year, _, _) = days_to_date(timestamp / SECONDS_PER_DAY);
+---
+>     #[callable(sig=b"getYear(uint128) returns (uint128)")]
+>     public fun get_year(tmstmp: u128): u128 {
+>         let (year, _, _) = days_to_date(tmstmp / SECONDS_PER_DAY);
+169,170c170,172
+<     public fun get_month(timestamp: u64): u64 {
+<         let (_, month, _) = days_to_date(timestamp / SECONDS_PER_DAY);
+---
+>     #[callable(sig=b"getMonth(uint128) returns (uint128)")]
+>     public fun get_month(tmstmp: u128): u128 {
+>         let (_, month, _) = days_to_date(tmstmp / SECONDS_PER_DAY);
+174,175c176,178
+<     public fun get_day(timestamp: u64): u64 {
+<         let (_, _, day) = days_to_date(timestamp / SECONDS_PER_DAY);
+---
+>     #[callable(sig=b"getDay(uint128) returns (uint128)")]
+>     public fun get_day(tmstmp: u128): u128 {
+>         let (_, _, day) = days_to_date(tmstmp / SECONDS_PER_DAY);
+179,180c182,184
+<     public fun get_hour(timestamp: u64): u64 {
+<         let secs = timestamp % SECONDS_PER_DAY;
+---
+>     #[callable(sig=b"getHour(uint128) returns (uint128)")]
+>     public fun get_hour(tmstmp: u128): u128 {
+>         let secs = tmstmp % SECONDS_PER_DAY;
+184,185c188,190
+<     public fun get_minute(timestamp: u64): u64 {
+<         let secs = timestamp % SECONDS_PER_HOUR;
+---
+>     #[callable(sig=b"getMinute(uint128) returns (uint128)")]
+>     public fun get_minute(tmstmp: u128): u128 {
+>         let secs = tmstmp % SECONDS_PER_HOUR;
+189,190c194,196
+<     public fun get_second(timestamp: u64): u64 {
+<         timestamp % SECONDS_PER_MINUTE
+---
+>     #[callable(sig=b"getSecond(uint128) returns (uint128)")]
+>     public fun get_second(tmstmp: u128): u128 {
+>         tmstmp % SECONDS_PER_MINUTE
+193,194c199,201
+<     public fun add_years(timestamp: u64, _years: u64): u64 {
+<         let (year, month, day) = days_to_date(timestamp / SECONDS_PER_DAY);
+---
+>     #[callable(sig=b"addYears(uint128,uint128) returns (uint128)")]
+>     public fun add_years(tmstmp: u128, _years: u128): u128 {
+>         let (year, month, day) = days_to_date(tmstmp / SECONDS_PER_DAY);
+198,199c205,206
+<         let new_timestamp = days_from_date(year, month, day) * SECONDS_PER_DAY + timestamp % SECONDS_PER_DAY;
+<         assert!(new_timestamp >= timestamp, error::internal(EADDITION_ASSERTION_FAILED));
+---
+>         let new_timestamp = days_from_date(year, month, day) * SECONDS_PER_DAY + tmstmp % SECONDS_PER_DAY;
+>         assert!(new_timestamp >= tmstmp, error::internal(EADDITION_ASSERTION_FAILED));
+203,204c210,212
+<     public fun add_months(timestamp: u64, _months: u64): u64 {
+<         let (year, month, day) = days_to_date(timestamp / SECONDS_PER_DAY);
+---
+>     #[callable(sig=b"addMonths(uint128,uint128) returns (uint128)")]
+>     public fun add_months(tmstmp: u128, _months: u128): u128 {
+>         let (year, month, day) = days_to_date(tmstmp / SECONDS_PER_DAY);
+210,211c218,219
+<         let new_timestamp = days_from_date(year, month, day) * SECONDS_PER_DAY + timestamp % SECONDS_PER_DAY;
+<         assert!(new_timestamp >= timestamp, error::internal(EADDITION_ASSERTION_FAILED));
+---
+>         let new_timestamp = days_from_date(year, month, day) * SECONDS_PER_DAY + tmstmp % SECONDS_PER_DAY;
+>         assert!(new_timestamp >= tmstmp, error::internal(EADDITION_ASSERTION_FAILED));
+215,216c223,225
+<     public fun add_days(timestamp: u64, _days: u64): u64 {
+<         timestamp + _days * SECONDS_PER_DAY
+---
+>     #[callable(sig=b"addDays(uint128,uint128) returns (uint128)")]
+>     public fun add_days(tmstmp: u128, _days: u128): u128 {
+>         tmstmp + _days * SECONDS_PER_DAY
+219,220c228,230
+<     public fun add_hours(timestamp: u64, _hours: u64): u64 {
+<         timestamp + _hours * SECONDS_PER_HOUR
+---
+>     #[callable(sig=b"addHours(uint128,uint128) returns (uint128)")]
+>     public fun add_hours(tmstmp: u128, _hours: u128): u128 {
+>         tmstmp + _hours * SECONDS_PER_HOUR
+223,224c233,235
+<     public fun add_minutes(timestamp: u64, _minutes: u64): u64 {
+<         timestamp + _minutes * SECONDS_PER_MINUTE
+---
+>     #[callable(sig=b"addMinutes(uint128,uint128) returns (uint128)")]
+>     public fun add_minutes(tmstmp: u128, _minutes: u128): u128 {
+>         tmstmp + _minutes * SECONDS_PER_MINUTE
+227,228c238,240
+<     public fun add_seconds(timestamp: u64, _seconds: u64): u64 {
+<         timestamp + _seconds
+---
+>     #[callable(sig=b"addSeconds(uint128,uint128) returns (uint128)")]
+>     public fun add_seconds(tmstmp: u128, _seconds: u128): u128 {
+>         tmstmp + _seconds
+231,232c243,245
+<     public fun sub_years(timestamp: u64, _years: u64): u64 {
+<         let (year, month, day) = days_to_date(timestamp / SECONDS_PER_DAY);
+---
+>     #[callable(sig=b"subYears(uint128,uint128) returns (uint128)")]
+>     public fun sub_years(tmstmp: u128, _years: u128): u128 {
+>         let (year, month, day) = days_to_date(tmstmp / SECONDS_PER_DAY);
+236,237c249,250
+<         let new_timestamp = days_from_date(year, month, day) * SECONDS_PER_DAY + timestamp % SECONDS_PER_DAY;
+<         assert!(new_timestamp <= timestamp, error::internal(ESUBTRACTION_ASSERTION_FAILED));
+---
+>         let new_timestamp = days_from_date(year, month, day) * SECONDS_PER_DAY + tmstmp % SECONDS_PER_DAY;
+>         assert!(new_timestamp <= tmstmp, error::internal(ESUBTRACTION_ASSERTION_FAILED));
+240,241c253,256
+<     public fun sub_months(timestamp: u64, _months: u64): u64 {
+<         let (year, month, day) = days_to_date(timestamp / SECONDS_PER_DAY);
+---
+> 
+>     #[callable(sig=b"subMonths(uint128,uint128) returns (uint128)")]
+>     public fun sub_months(tmstmp: u128, _months: u128): u128 {
+>         let (year, month, day) = days_to_date(tmstmp / SECONDS_PER_DAY);
+247,248c262,263
+<         let new_timestamp = days_from_date(year, month, day) * SECONDS_PER_DAY + timestamp % SECONDS_PER_DAY;
+<         assert!(new_timestamp <= timestamp, error::internal(ESUBTRACTION_ASSERTION_FAILED));
+---
+>         let new_timestamp = days_from_date(year, month, day) * SECONDS_PER_DAY + tmstmp % SECONDS_PER_DAY;
+>         assert!(new_timestamp <= tmstmp, error::internal(ESUBTRACTION_ASSERTION_FAILED));
+252,253c267,269
+<     public fun sub_days(timestamp: u64, _days: u64): u64 {
+<         timestamp - _days * SECONDS_PER_DAY
+---
+>     #[callable(sig=b"subDays(uint128,uint128) returns (uint128)")]
+>     public fun sub_days(tmstmp: u128, _days: u128): u128 {
+>         tmstmp - _days * SECONDS_PER_DAY
+256,257c272,274
+<     public fun sub_hours(timestamp: u64, _hours: u64): u64 {
+<         timestamp - _hours * SECONDS_PER_HOUR
+---
+>     #[callable(sig=b"subHours(uint128,uint128) returns (uint128)")]
+>     public fun sub_hours(tmstmp: u128, _hours: u128): u128 {
+>         tmstmp - _hours * SECONDS_PER_HOUR
+260,261c277,279
+<     public fun sub_minutes(timestamp: u64, _minutes: u64): u64 {
+<         timestamp - _minutes * SECONDS_PER_MINUTE
+---
+>     #[callable(sig=b"subMinutes(uint128,uint128) returns (uint128)")]
+>     public fun sub_minutes(tmstmp: u128, _minutes: u128): u128 {
+>         tmstmp - _minutes * SECONDS_PER_MINUTE
+264,265c282,284
+<     public fun sub_seconds(timestamp: u64, _seconds: u64): u64 {
+<         timestamp - _seconds
+---
+>     #[callable(sig=b"subSeconds(uint128,uint128) returns (uint128)")]
+>     public fun sub_seconds(tmstmp: u128, _seconds: u128): u128 {
+>         tmstmp - _seconds
+268c287,288
+<     public fun diff_years(from_timestamp: u64, to_timestamp: u64): u64 {
+---
+>     #[callable(sig=b"diffYears(uint128,uint128) returns (uint128)")]
+>     public fun diff_years(from_timestamp: u128, to_timestamp: u128): u128 {
+275c295,296
+<     public fun diff_months(from_timestamp: u64, to_timestamp: u64): u64 {
+---
+>     #[callable(sig=b"diffMonths(uint128,uint128) returns (uint128)")]
+>     public fun diff_months(from_timestamp: u128, to_timestamp: u128): u128 {
+282c303,304
+<     public fun diff_days(from_timestamp: u64, to_timestamp: u64): u64 {
+---
+>     #[callable(sig=b"diffDays(uint128,uint128) returns (uint128)")]
+>     public fun diff_days(from_timestamp: u128, to_timestamp: u128): u128 {
+287c309,310
+<     public fun diff_hours(from_timestamp: u64, to_timestamp: u64): u64 {
+---
+>     #[callable(sig=b"diffHours(uint128,uint128) returns (uint128)")]
+>     public fun diff_hours(from_timestamp: u128, to_timestamp: u128): u128 {
+292c315,316
+<     public fun diff_minutes(from_timestamp: u64, to_timestamp: u64): u64 {
+---
+>     #[callable(sig=b"diffMinutes(uint128,uint128) returns (uint128)")]
+>     public fun diff_minutes(from_timestamp: u128, to_timestamp: u128): u128 {
+297c321,322
+<     public fun diff_seconds(from_timestamp: u64, to_timestamp: u64): u64 {
+---
+>     #[callable(sig=b"diffSeconds(uint128,uint128) returns (uint128)")]
+>     public fun diff_seconds(from_timestamp: u128, to_timestamp: u128): u128 {

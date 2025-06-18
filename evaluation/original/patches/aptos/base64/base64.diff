@@ -1,0 +1,93 @@
+1,6c1,2
+< // https://github.com/movefuns/movefuns/blob/32f478b4877204e04410fe13f1c2c89305c135db/aptos/sources/base64.move
+< 
+< // Copyright (c) The MoveFuns DAO
+< // SPDX-License-Identifier: Apache-2.0
+< 
+< module sakutaro_poem::base64 {
+---
+> #[evm_contract]
+> module Evm::base64 {
+11,12c7,9
+<     public fun encode(str: &vector<u8>): vector<u8> {
+<         if (vector::is_empty(str)) {
+---
+>     #[callable(sig=b"encode(string) returns (string)")]
+>     public fun encode(str: vector<u8>): vector<u8> {
+>         if (vector::is_empty(&str)) {
+15,16c12,13
+<         let size = vector::length(str);
+<         let eq: u8 = 61;
+---
+>         let size = vector::length(&str);
+>         let eql: u8 = 61;
+21c18
+<             vector::push_back(&mut res, *vector::borrow(&TABLE, (((*vector::borrow(str, m) & 0xfc) >> 2) as u64)));
+---
+>             vector::push_back(&mut res, *vector::borrow(&TABLE, (((*vector::borrow(&str, m) & 0xfc) >> 2) as u64)));
+24,26c21,23
+<                     vector::push_back(&mut res, *vector::borrow(&TABLE, (((*vector::borrow(str, m) & 0x03) << 4) as u64)));
+<                     vector::push_back(&mut res, eq);
+<                     vector::push_back(&mut res, eq);
+---
+>                     vector::push_back(&mut res, *vector::borrow(&TABLE, (((*vector::borrow(&str, m) & 0x03) << 4) as u64)));
+>                     vector::push_back(&mut res, eql);
+>                     vector::push_back(&mut res, eql);
+28,30c25,27
+<                     vector::push_back(&mut res, *vector::borrow(&TABLE, ((((*vector::borrow(str, m) & 0x03) << 4) + ((*vector::borrow(str, m + 1) & 0xf0) >> 4)) as u64)));
+<                     vector::push_back(&mut res, *vector::borrow(&TABLE, (((*vector::borrow(str, m + 1) & 0x0f) << 2) as u64)));
+<                     vector::push_back(&mut res, eq);
+---
+>                     vector::push_back(&mut res, *vector::borrow(&TABLE, ((((*vector::borrow(&str, m) & 0x03) << 4) + ((*vector::borrow(&str, m + 1) & 0xf0) >> 4)) as u64)));
+>                     vector::push_back(&mut res, *vector::borrow(&TABLE, (((*vector::borrow(&str, m + 1) & 0x0f) << 2) as u64)));
+>                     vector::push_back(&mut res, eql);
+32,34c29,31
+<                     vector::push_back(&mut res, *vector::borrow(&TABLE, ((((*vector::borrow(str, m) & 0x03) << 4) + ((*vector::borrow(str, m + 1) & 0xf0) >> 4)) as u64)));
+<                     vector::push_back(&mut res, *vector::borrow(&TABLE, ((((*vector::borrow(str, m + 1) & 0x0f) << 2) + ((*vector::borrow(str, m + 2) & 0xc0) >> 6)) as u64)));
+<                     vector::push_back(&mut res, *vector::borrow(&TABLE, ((*vector::borrow(str, m + 2) & 0x3f) as u64)));
+---
+>                     vector::push_back(&mut res, *vector::borrow(&TABLE, ((((*vector::borrow(&str, m) & 0x03) << 4) + ((*vector::borrow(&str, m + 1) & 0xf0) >> 4)) as u64)));
+>                     vector::push_back(&mut res, *vector::borrow(&TABLE, ((((*vector::borrow(&str, m + 1) & 0x0f) << 2) + ((*vector::borrow(&str, m + 2) & 0xc0) >> 6)) as u64)));
+>                     vector::push_back(&mut res, *vector::borrow(&TABLE, ((*vector::borrow(&str, m + 2) & 0x3f) as u64)));
+37,39c34,36
+<                 vector::push_back(&mut res, *vector::borrow(&TABLE, ((((*vector::borrow(str, m) & 0x03) << 4) + ((*vector::borrow(str, m + 1) & 0xf0) >> 4)) as u64)));
+<                 vector::push_back(&mut res, *vector::borrow(&TABLE, ((((*vector::borrow(str, m + 1) & 0x0f) << 2) + ((*vector::borrow(str, m + 2) & 0xc0) >> 6)) as u64)));
+<                 vector::push_back(&mut res, *vector::borrow(&TABLE, ((*vector::borrow(str, m + 2) & 0x3f) as u64)));
+---
+>                 vector::push_back(&mut res, *vector::borrow(&TABLE, ((((*vector::borrow(&str, m) & 0x03) << 4) + ((*vector::borrow(&str, m + 1) & 0xf0) >> 4)) as u64)));
+>                 vector::push_back(&mut res, *vector::borrow(&TABLE, ((((*vector::borrow(&str, m + 1) & 0x0f) << 2) + ((*vector::borrow(&str, m + 2) & 0xc0) >> 6)) as u64)));
+>                 vector::push_back(&mut res, *vector::borrow(&TABLE, ((*vector::borrow(&str, m + 2) & 0x3f) as u64)));
+47,48c44,46
+<     public fun decode(code: &vector<u8>): vector<u8> {
+<         if (vector::is_empty(code) || vector::length<u8>(code) % 4 != 0) {
+---
+>     #[callable(sig=b"decode(string) returns (string)")]
+>     public fun decode(code: vector<u8>): vector<u8> {
+>         if (vector::is_empty(&code) || vector::length<u8>(&code) % 4 != 0) {
+52c50
+<         let size = vector::length(code);
+---
+>         let size = vector::length(&code);
+56,59c54,57
+<             let pos_of_char_1 = pos_of_char(*vector::borrow(code, m + 1));
+<             vector::push_back(&mut res, (pos_of_char(*vector::borrow(code, m)) << 2) + ((pos_of_char_1 & 0x30) >> 4));
+<             if ( (m + 2 < size) && (*vector::borrow(code, m + 2) != 61) && (*vector::borrow(code, m + 2) != 46)) {
+<                 let pos_of_char_2 = pos_of_char(*vector::borrow(code, m + 2));
+---
+>             let pos_of_char_1 = pos_of_char(*vector::borrow(&code, m + 1));
+>             vector::push_back(&mut res, (pos_of_char(*vector::borrow(&code, m)) << 2) + ((pos_of_char_1 & 0x30) >> 4));
+>             if ( (m + 2 < size) && (*vector::borrow(&code, m + 2) != 61) && (*vector::borrow(&code, m + 2) != 46)) {
+>                 let pos_of_char_2 = pos_of_char(*vector::borrow(&code, m + 2));
+62,64c60,62
+<                 if ( (m + 3 < size) && (*vector::borrow(code, m + 3) != 61) && (*vector::borrow(code, m + 3) != 46)) {
+<                     let pos_of_char_2 = pos_of_char(*vector::borrow(code, m + 2));
+<                     vector::push_back<u8>(&mut res, ((pos_of_char_2 & 0x03) << 6) + pos_of_char(*vector::borrow(code, m + 3)));
+---
+>                 if ( (m + 3 < size) && (*vector::borrow(&code, m + 3) != 61) && (*vector::borrow(&code, m + 3) != 46)) {
+>                     let pos_of_char_2 = pos_of_char(*vector::borrow(&code, m + 2));
+>                     vector::push_back<u8>(&mut res, ((pos_of_char_2 & 0x03) << 6) + pos_of_char(*vector::borrow(&code, m + 3)));
+88c86
+< }
+---
+> }
+\ No newline at end of file

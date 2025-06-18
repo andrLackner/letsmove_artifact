@@ -1,0 +1,26 @@
+1,2c1,3
+< /// Implementation of math functions needed for Multi Swap.
+< module liquidswap_v05::math {
+---
+> #[evm_contract]
+> module Evm::math {
+> 
+15a17
+> 	#[callable(sig=b"overflowAdd(uint128,uint128) returns (uint128)")]
+29a32
+> 	#[callable(sig=b"mulDiv(uint64,uint64,uint64) returns (uint64)")]
+36a40
+> 	#[callable(sig=b"mulDivU128(uint128,uint128,uint128) returns (uint64)")]
+43a48
+> 	#[callable(sig=b"mulToU128(uint64,uint64) returns (uint128)")]
+48a54
+> 	#[callable(sig=b"sqrt(uint128) returns (uint64)")]
+68a75
+> 	#[callable(sig=b"pow10(uint8) returns (uint64)")]
+74,77d80
+<             spec {
+<                 invariant res == spec_pow(10, i);
+<                 invariant 0 <= i && i <= degree;
+<             };
+85a89
+> 	#[callable(sig=b"minU64(uint64,uint64) returns (uint64)")]

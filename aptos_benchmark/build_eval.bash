@@ -15,19 +15,27 @@ function showExpFolderStructure() {
 
     echo $target
     echo "artifact_root
+.
 ├── aptos_benchmark
+│   ├── benchmark
+│   │   ├── aptos
+│   │   ├── candidates
+│   │   ├── no_source
+│   │   ├── trivial
+│   │   └── unsupported
+│   └── ...
 ├── docker
 │   ├── hardhat-move
+│   │   └── ...
 │   ├── hardhat-test
+│   │   └── ...
 │   └── move
 ├── Dockerfile
 ├── evaluation
 │   ├── attach.bash
-│   ├── contracts
-│   ├── libs
-│   ├── ...
-├── gas_prices
-└── lets-move-to-evm"
+│   ├── irm
+│   └── original
+└── gas_prices"
 }
 
 function reject() {
@@ -118,31 +126,44 @@ done
 mkdir -p $SCRIPT_DIR/tmp
 cd $SCRIPT_DIR/tmp
 
-for file in "${files[@]}"
-do
+compilers=("irm" "original")
+
+for file in "${files[@]}"; do
+    skip=0
     acc=$(echo $file | sed -E 's/(0x[a-f0-9]+).*/\1/')
     mod=$(echo $file | sed -E 's/0x[a-f0-9]+_([^\.]+).*$/\1/')
-
-
     name=$(getModName $acc $mod)
-    dir="$SCRIPT_DIR/../evaluation/contracts/aptos/$name/sources"
-    file="$dir/$name.move"
-    patch="$SCRIPT_DIR/../evaluation/patches/aptos/$name/$name.diff"
+    
+    for comp in "${compilers[@]}"; do
+        dir="$SCRIPT_DIR/../evaluation/$comp/contracts/aptos/$name/sources"
+        patch="$SCRIPT_DIR/../evaluation/$comp/patches/aptos/$name/$name.diff"
 
-    if [ ! -f "$patch" ]; then
+        if [ ! -f "$patch" ]; then
+            skip=1
+            continue
+        fi
+
+        mkdir -p "$dir"
+        writeMoveToml "$name" "$dir/../"
+    done
+    if [ $skip -ne 0 ]; then
         echo -e "${YELLOW}[skipped]${NC} $name (${acc::10}...)"
-        continue
+        continue 
     fi
-
-    mkdir -p "$dir"
-    writeMoveToml "$name" "$dir/../"
     
     python3 $SCRIPT_DIR/get_benchmark.py $acc $mod > /dev/null
-    zstdcat -f "$SCRIPT_DIR/tmp/$acc""_$mod.move.zst" > $file
     echo -e "${GREEN}[loaded] ${NC} $name (${acc::10}...)"
 
-    patch -s $file < $patch
-    echo -e "${GREEN}[patched]${NC} $name (${acc::10}...)"
+    for comp in "${compilers[@]}"; do
+        dir="$SCRIPT_DIR/../evaluation/$comp/contracts/aptos/$name/sources"
+        patch="$SCRIPT_DIR/../evaluation/$comp/patches/aptos/$name/$name.diff"
+
+        out="$dir/$name.move"
+        zstdcat -f "$SCRIPT_DIR/tmp/$acc""_$mod.move.zst" > $out
+
+        patch -s $out < $patch
+        echo -e "${GREEN}[patched]${NC} $name (${acc::10}...)"
+    done
 done
 
 rm -R $SCRIPT_DIR/tmp

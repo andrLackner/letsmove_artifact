@@ -1,0 +1,41 @@
+1,3c1,3
+< module token_addr::TokenModule {
+< 
+<     use std::signer;
+---
+> #[evm_contract]
+> module Evm::token_module_original {
+>     use Evm::Evm::{sender, sign};
+9,11c9,13
+<     public fun initialize_balance(account: &signer, initial_amount: u64) {
+<         let balance = Balance { amount: initial_amount };
+<         move_to(account, balance);
+---
+>     #[callable(sig=b"initializeBalance(uint64)")]
+>     public fun initialize_balance(initial_amount: u64) {
+>         let account = sender();
+>         let bal = Balance { amount: initial_amount };
+>         move_to(&sign(account), bal);
+14,15c16,18
+<     public fun initialize_token_store(account: &signer) {
+<         initialize_balance(account, 0)  // Initialize with 0 tokens by default
+---
+>     #[callable(sig=b"initializeBalance()")]
+>     public fun initialize_token_store() {
+>         initialize_balance(0)  // Initialize with 0 tokens by default
+18c21,23
+<     public fun transfer(admin: &signer, recipient: address, amount: u64) acquires Balance {
+---
+>     #[callable(sig=b"transfer(address,uint64)")]
+>     public fun transfer(recipient: address, amount: u64) acquires Balance {
+>         let admin_address = sender();
+21d25
+<         let admin_address = signer::address_of(admin);
+31a36
+>     #[callable(sig=b"getBalance(address) returns (uint64)")]
+33,34c38,39
+<         let balance = borrow_global<Balance>(account);
+<         balance.amount
+---
+>         let bal = borrow_global<Balance>(account);
+>         bal.amount

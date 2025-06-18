@@ -1,0 +1,71 @@
+1,2c1,3
+< module aliens::aliens_events {
+<     use std::string::String;
+---
+> #[evm_contract]
+> module Evm::aliens_events {
+>     use Evm::U256::{U256 /*gt, add, sub, zero, le*/};
+3a5
+>     #[abi_struct(sig=b"WithdrawEvent(address,uint256,uint256)")]
+6,7c8,9
+<         amount: u64,
+<         timestamp: u64,
+---
+>         amount: U256,
+>         time: U256,
+9a12
+>     #[abi_struct(sig=b"SetReferrerEvent(string,address,uint256)")]
+11c14
+<         referrer: String,
+---
+>         referrer: vector<u8>,
+13c16
+<         timestamp: u64,
+---
+>         time: U256,
+15a19
+>     #[abi_struct(sig=b"SetMintPriceEvent(uint256,uint256)")]
+17,18c21,22
+<         mint_price: u64,
+<         timestamp: u64,
+---
+>         mint_price: U256,
+>         time: U256,
+20a25
+>     #[callable(sig=b"newWithdrawEvent(address,uint256,uint256) returns (WithdrawEvent)")]
+23,24c28,29
+<         amount: u64,
+<         timestamp: u64
+---
+>         amount: U256,
+>         time: U256
+29c34
+<             timestamp,
+---
+>             time,
+32a38
+>     #[callable(sig=b"newSetReferrerEvent(string,address,uint256) returns (SetReferrerEvent)")]
+34c40
+<         referrer: String,
+---
+>         referrer: vector<u8>,
+36c42
+<         timestamp: u64
+---
+>         time: U256
+41c47
+<             timestamp,
+---
+>             time,
+44a51
+>     #[callable(sig=b"newSetMintPriceEvent(uint256,uint256) returns (SetMintPriceEvent)")]
+46,47c53,54
+<         mint_price: u64,
+<         timestamp: u64
+---
+>         mint_price: U256,
+>         time: U256
+51c58
+<             timestamp,
+---
+>             time,

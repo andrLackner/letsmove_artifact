@@ -1,0 +1,48 @@
+1c1,2
+< module move_int::i64 {
+---
+> #[evm_contract]
+> module Evm::i64_original {
+12a14
+>     #[abi_struct(sig=b"I64(uint64)")]
+17a20
+>     #[callable(sig=b"zero() returns (I64)")]
+21a25
+>     #[callable(sig=b"fromU64(uint64) returns (I64)")]
+26a31
+>     #[callable(sig=b"from(uint64) returns (I64)")]
+32a38
+>     #[callable(sig=b"fromNeg(uint64) returns (I64)")]
+44a51
+>     #[callable(sig=b"wrappingAdd(I64,I64) returns (I64)")]
+57a65
+>     #[callable(sig=b"add(I64,I64) returns (I64)")]
+67a76
+>     #[callable(sig=b"wrappingSub(I64,I64) returns (I64)")]
+73a83
+>     #[callable(sig=b"sub(I64,I64) returns (I64)")]
+79a90
+>     #[callable(sig=b"mul(I64,I64) returns (I64)")]
+89a101
+>     #[callable(sig=b"div(I64,I64) returns (I64)")]
+99a112
+>     #[callable(sig=b"abs(I64) returns (I64)")]
+108a122
+>     #[callable(sig=b"absU64(I64) returns (uint64)")]
+116a131
+>     #[callable(sig=b"min(I64,I64) returns (I64)")]
+122a138
+>     #[callable(sig=b"max(I64,I64) returns (I64)")]
+128a145
+>     #[callable(sig=b"pow(I64,uint64) returns (I64)")]
+136,138c153,154
+<         let exp = exponent;
+<         while (exp > 0) {
+<             if (exp & 1 == 1) {
+---
+>             while (exponent > 0) {
+>             if (exponent & 1 == 1) {
+142c158
+<             exp = exp >> 1;
+---
+>             exponent = exponent >> 1;
