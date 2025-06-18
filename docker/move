@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ "$MOVE_COMPILER" == "IRM" ]; then
+    move-irm "$@"
+else
+    move-orig "$@"
+fi

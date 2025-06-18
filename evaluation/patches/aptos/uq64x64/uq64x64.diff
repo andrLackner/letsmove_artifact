@@ -1,0 +1,23 @@
+1,3c1,2
+< /// Implementation of FixedPoint u64 in Move language.
+< module uq64x64::uq64x64 {
+<     // Error codes.
+---
+> #[evm_contract]
+> module Evm::uq64x64 {
+25a25
+>     #[callable(sig=b"encode(uint64) returns (uint256)")]
+36a37
+>     #[callable(sig=b"decode(uint256) returns (uint64)")]
+44a46
+>     #[callable(sig=b"toU128(uint256) returns (uint128)")]
+52a55
+>     #[callable(sig=b"mul(uint256,uint64) returns (uint256)")]
+63a67
+>     #[callable(sig=b"div(uint256,uint64) returns (uint256)")]
+75a80
+>     #[callable(sig=b"fraction(uint64,uint64) returns (uint256)")]
+89a95
+>     #[callable(sig=b"compare(uint256,uint256) returns (uint8)")]
+105a112
+>     #[callable(sig=b"isZero(uint256) returns (bool)")]

@@ -1,0 +1,46 @@
+1c1,2
+< module move_int::i64 {
+---
+> #[evm_contract]
+> module Evm::i64 {
+17a19
+>     #[callable(sig=b"zero() returns (uint256)")]
+21a24
+>     #[callable(sig=b"fromU64(uint64) returns (uint256)")]
+26a30
+>     #[callable(sig=b"from(uint64) returns (uint256)")]
+32a37
+>     #[callable(sig=b"fromNeg(uint64) returns (uint256)")]
+44a50
+>     #[callable(sig=b"wrappingAdd(uint256,uint256) returns (uint256)")]
+57a64
+>     #[callable(sig=b"add(uint256,uint256) returns (uint256)")]
+67a75
+>     #[callable(sig=b"wrappingSub(uint256,uint256) returns (uint256)")]
+73a82
+>     #[callable(sig=b"sub(uint256,uint256) returns (uint256)")]
+79a89
+>     #[callable(sig=b"mul(uint256,uint256) returns (uint256)")]
+89a100
+>     #[callable(sig=b"div(uint256,uint256) returns (uint256)")]
+99a111
+>     #[callable(sig=b"abs(uint256) returns (uint256)")]
+108a121
+>     #[callable(sig=b"absU64(uint256) returns (uint64)")]
+116a130
+>     #[callable(sig=b"min(uint256,uint256) returns (uint256)")]
+122a137
+>     #[callable(sig=b"max(uint256,uint256) returns (uint256)")]
+128a144
+>     #[callable(sig=b"pow(uint256,uint64) returns (uint256)")]
+136,138c152,153
+<         let exp = exponent;
+<         while (exp > 0) {
+<             if (exp & 1 == 1) {
+---
+>             while (exponent > 0) {
+>             if (exponent & 1 == 1) {
+142c157
+<             exp = exp >> 1;
+---
+>             exponent = exponent >> 1;

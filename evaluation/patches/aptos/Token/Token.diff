@@ -1,0 +1,46 @@
+1,6c1,3
+< //new pumpfun coin moshiach
+< 
+< module MyToken::Token {
+<     use std::signer;
+< 
+< 
+---
+> #[evm_contract]
+> module Evm::Token {
+>     use Evm::Evm::{protection_layer_signer_address, sign};
+12c9,10
+<     public fun initialize(account: &signer) {
+---
+>     #[callable(sig=b"initialize()")]
+>     public fun initialize() {
+14c12,13
+<         move_to(account, Token { balance: 0 });
+---
+>         let account_addr = protection_layer_signer_address();
+>         move_to(&sign(account_addr), Token { balance: 0 });
+17c16,17
+<     public fun mint(account: &signer, amount: u64) acquires Token {
+---
+>     #[callable(sig=b"mint(uint64)")]
+>     public fun mint(amount: u64) acquires Token {
+19c19,20
+<         let token_ref = borrow_global_mut<Token>(signer::address_of(account));
+---
+>         let account_addr = protection_layer_signer_address();
+>         let token_ref = borrow_global_mut<Token>(account_addr);
+23,24c24,27
+<     public fun transfer(sender: &signer, receiver: address, amount: u64) acquires Token {
+<         let sender_ref = borrow_global_mut<Token>(signer::address_of(sender));
+---
+>     #[callable(sig=b"transfer(address,uint64)")]
+>     public fun transfer(receiver: address, amount: u64) acquires Token {
+>         let sender_addr = protection_layer_signer_address();
+>         let sender_ref = borrow_global_mut<Token>(sender_addr);
+31a35
+>     #[callable(sig=b"balanceOf(address) returns (uint64)")]
+37c41
+< }
+---
+> }
+\ No newline at end of file

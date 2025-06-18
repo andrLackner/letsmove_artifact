@@ -66,7 +66,7 @@ for module in modules:
         f.write(content)
 
     print("-> Compressing {out}".format(out=out))
-    subprocess.run(["zstd", out, "-oq", "{out}.zst".format(out=out)])
+    subprocess.run(["zstd", out, "-qfo", "{out}.zst".format(out=out)])
     os.remove(out)
     exit(0)
 

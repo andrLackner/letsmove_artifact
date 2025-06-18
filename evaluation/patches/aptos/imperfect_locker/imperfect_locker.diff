@@ -1,0 +1,64 @@
+1,4c1,6
+< module impermanent_loss::imperfect_locker {
+<     use std::signer;
+<         const E_NOT_AUTHORIZED: u64 = 1;
+<         const E_POOL_DOES_NOT_EXIST: u64 = 2;
+---
+> #[evm_contract]
+> module Evm::imperfect_locker {
+> 
+>     use Evm::Evm::{protection_layer_signer_address, sign};    
+>     const E_NOT_AUTHORIZED: u64 = 1;
+>     const E_POOL_DOES_NOT_EXIST: u64 = 2;
+7c9
+<     struct Pool<phantom CoinTypeA, phantom CoinTypeB> has key {
+---
+>     struct Pool has key {
+21a24
+>     #[callable(sig=b"initializePool(uint64,uint64,uint64,uint64)")]
+23,24c26
+<     public entry fun initialize_pool<CoinTypeA, CoinTypeB>(
+<         account: &signer,
+---
+>     public entry fun initialize_pool(
+30c32
+<         let addr = signer::address_of(account);
+---
+>         let addr = protection_layer_signer_address();
+32c34
+<         let pool = Pool<CoinTypeA, CoinTypeB> {
+---
+>         let pool = Pool {
+42c44
+<         move_to(account, pool);
+---
+>         move_to(&sign(addr), pool);
+44a47
+>     #[callable(sig=b"updatePool(uint64,uint64,uint64,uint64)")]
+46,47c49
+<     public entry fun update_pool<CoinTypeA, CoinTypeB>(
+<         account: &signer,
+---
+>     public entry fun update_pool(
+53,54c55,56
+<         let addr = signer::address_of(account);
+<         assert!(exists<Pool<CoinTypeA, CoinTypeB>>(addr), E_POOL_DOES_NOT_EXIST);
+---
+>         let addr = protection_layer_signer_address();
+>         assert!(exists<Pool>(addr), E_POOL_DOES_NOT_EXIST);
+56c58
+<         let pool = borrow_global_mut<Pool<CoinTypeA, CoinTypeB>>(addr);
+---
+>         let pool = borrow_global_mut<Pool>(addr);
+62a65
+>     #[callable(sig=b"calculateImpermanentLoss(address) returns (uint64)")]
+64,65c67,68
+<     public fun calculate_impermanent_loss<CoinTypeA, CoinTypeB>(pool_addr: address): u64 acquires Pool {
+<         assert!(exists<Pool<CoinTypeA, CoinTypeB>>(pool_addr), E_POOL_DOES_NOT_EXIST);
+---
+>     public fun calculate_impermanent_loss(pool_addr: address): u64 acquires Pool {
+>         assert!(exists<Pool>(pool_addr), E_POOL_DOES_NOT_EXIST);
+67c70
+<         let pool = borrow_global<Pool<CoinTypeA, CoinTypeB>>(pool_addr);
+---
+>         let pool = borrow_global<Pool>(pool_addr);
