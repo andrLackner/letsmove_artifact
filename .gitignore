@@ -1,5 +1,7 @@
 lets-move-to-evm/
 evaluation/irm/contracts/aptos/*
+evaluation/irm/contracts/rosetta/**/build
 evaluation/irm/results/*
 evaluation/original/contracts/aptos/*
+evaluation/original/contracts/rosetta/**/build
 evaluation/original/results/*

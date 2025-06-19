@@ -17,8 +17,6 @@ else
     echo "Unknown compiler $compiler"
 fi
 
-echo "$compiler"
-
 docker run --rm                                                         \
     -v $SCRIPT_DIR/$compiler/contracts:/app/hardhat-test/contracts      \
     -v $SCRIPT_DIR/$compiler/test:/app/hardhat-test/test                \
