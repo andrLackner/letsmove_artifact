@@ -1,0 +1,191 @@
+[
+{
+  "name": "transfer",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "address",
+      "name": "to"
+    },
+    {
+      "type": "uint256",
+      "name": "amount"
+    }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "deposit",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "address",
+      "name": "to"
+    },
+    {
+      "type": "tuple",
+      "components": [
+        {
+          "type": "uint256",
+          "name": "value"
+        }
+      ],
+      "name": "coin"
+    }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "doNothing",
+  "type": "function",
+  "inputs": [],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "getBalance",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "address",
+      "name": "account"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "uint256",
+      "name": ""
+    }
+  ],
+  "stateMutability": "view"
+},
+{
+  "name": "hasMintCapability",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "address",
+      "name": "account"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "bool",
+      "name": ""
+    }
+  ],
+  "stateMutability": "view"
+},
+{
+  "name": "mint",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "amount"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "tuple",
+      "components": [
+        {
+          "type": "uint256",
+          "name": "value"
+        }
+      ],
+      "name": ""
+    }
+  ],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "mintCapability",
+  "type": "function",
+  "inputs": [],
+  "outputs": [],
+  "stateMutability": "view"
+},
+{
+  "name": "mintTo",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "amount"
+    },
+    {
+      "type": "address",
+      "name": "to"
+    }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "register",
+  "type": "function",
+  "inputs": [],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "withdraw",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "amount"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "tuple",
+      "components": [
+        {
+          "type": "uint256",
+          "name": "value"
+        }
+      ],
+      "name": ""
+    }
+  ],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "withdrawFrom",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "address",
+      "name": "acc"
+    },
+    {
+      "type": "uint256",
+      "name": "amount"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "tuple",
+      "components": [
+        {
+          "type": "uint256",
+          "name": "value"
+        }
+      ],
+      "name": ""
+    }
+  ],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "constructor",
+  "type": "constructor",
+  "inputs": [],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+}
+]

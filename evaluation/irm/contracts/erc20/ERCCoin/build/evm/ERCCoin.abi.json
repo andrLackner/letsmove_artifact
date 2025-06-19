@@ -1,0 +1,269 @@
+[
+{
+  "name": "transfer",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "address",
+      "name": "to"
+    },
+    {
+      "type": "uint256",
+      "name": "amount"
+    }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "coinValue",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "coin_ref"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "uint256",
+      "name": ""
+    }
+  ],
+  "stateMutability": "view"
+},
+{
+  "name": "deposit",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "address",
+      "name": "to"
+    },
+    {
+      "type": "uint256",
+      "name": "coin"
+    }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "doNothing",
+  "type": "function",
+  "inputs": [],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "extract",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "coin_ref"
+    },
+    {
+      "type": "uint256",
+      "name": "amount"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "uint256",
+      "name": ""
+    }
+  ],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "getBalance",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "address",
+      "name": "account"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "uint256",
+      "name": ""
+    }
+  ],
+  "stateMutability": "view"
+},
+{
+  "name": "hasMintCapability",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "address",
+      "name": "account"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "bool",
+      "name": ""
+    }
+  ],
+  "stateMutability": "view"
+},
+{
+  "name": "merge",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "coin_ref"
+    },
+    {
+      "type": "uint256",
+      "name": "coin"
+    }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "mint",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "amount"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "uint256",
+      "name": ""
+    }
+  ],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "mintCapability",
+  "type": "function",
+  "inputs": [],
+  "outputs": [],
+  "stateMutability": "view"
+},
+{
+  "name": "mintTo",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "amount"
+    },
+    {
+      "type": "address",
+      "name": "to"
+    }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "register",
+  "type": "function",
+  "inputs": [],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "withdraw",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "amount"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "uint256",
+      "name": ""
+    }
+  ],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "protectionLayer",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "address",
+      "name": "protected_contract"
+    },
+    {
+      "type": "bytes",
+      "name": "cb_data"
+    }
+  ],
+  "outputs": [
+    {
+      "type": "bool",
+      "name": ""
+    }
+  ],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "storeExternal",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "resId"
+    }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "unstoreExternal",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "resId"
+    }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "getSigner",
+  "type": "function",
+  "inputs": [],
+  "outputs": [
+    {
+      "type": "address",
+      "name": ""
+    }
+  ],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "dropRes",
+  "type": "function",
+  "inputs": [
+    {
+      "type": "uint256",
+      "name": "resId"
+    }
+  ],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+},
+{
+  "name": "constructor",
+  "type": "constructor",
+  "inputs": [],
+  "outputs": [],
+  "stateMutability": "nonpayable"
+}
+]
