@@ -1,6 +1,6 @@
 const { time } = require("@openzeppelin/test-helpers");
 const { toNumber } = require("web3-utils");
-
+const fs = require("node:fs");
 const BasicCoin = artifacts.require("BasicCoin");
 const Pricebet = artifacts.require("Pricebet");
 const Exchange = artifacts.require("Exchange");
@@ -48,12 +48,18 @@ contract("Pricebet", function (accounts) {
 
       let result = await this.pricebet.join(1000, { from: user1 });
       // Cost of joining the bet
-      console.log("Join cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `pricebet;join;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 1 should be able to win the bet", async function () {
       let result = await this.pricebet.win({ from: user1 });
       // Cost of winning the bet
-      console.log("Win cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `pricebet;win;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to timeout the bet", async function () {
       // Increase the block number to simulate the timeout
@@ -61,7 +67,10 @@ contract("Pricebet", function (accounts) {
 
       let result = await this.pricebet.timeout({ from: deployer });
       // Cost of timing out the bet
-      console.log("Timeout cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `pricebet;timeout;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

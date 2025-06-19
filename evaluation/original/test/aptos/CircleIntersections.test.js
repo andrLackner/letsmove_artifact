@@ -1,4 +1,5 @@
 const CircleIntersections = artifacts.require("Circle_Intersections_Module");
+const fs = require("node:fs");
 
 contract("Circle_Intersections_Module", function (accounts) {
   const [deployer, user1, user2] = accounts;
@@ -20,13 +21,16 @@ contract("Circle_Intersections_Module", function (accounts) {
         2,
         { from: user1 }
       );
-      console.log("Circle intersections cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `circle_int;intersect;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call circlesIntersectMonitor", async function () {
       let result = await this.circleIntersections.circlesIntersectMonitor();
-      console.log(
-        "Circle intersections monitor cost: ",
-        result.receipt.gasUsed
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `circle_int;monitor;${result.receipt.gasUsed}\n`
       );
     });
   });

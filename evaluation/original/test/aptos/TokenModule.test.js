@@ -1,4 +1,5 @@
 const TokenModuleOriginal = artifacts.require("TokenModule");
+const fs = require("node:fs");
 
 contract("TokenModule", function (accounts) {
   const [deployer, user1, user2] = accounts;
@@ -12,28 +13,33 @@ contract("TokenModule", function (accounts) {
       let result = await this.tokenModule.initializeBalance(1000, {
         from: user1,
       });
-      console.log("Initialize balance cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token_mod;init;${result.receipt.gasUsed}\n`
+      );
     });
     it("should initialize balance with zero", async function () {
       let result = await this.tokenModule.initializeBalance(0, {
         from: user2,
       });
-      console.log(
-        "Initialize balance with zero cost: ",
-        result.receipt.gasUsed
-      );
     });
     it("should transfer tokens", async function () {
       let result = await this.tokenModule.transfer(user2, 100, {
         from: user1,
       });
-      console.log("Transfer tokens cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token_mod;transfer;${result.receipt.gasUsed}\n`
+      );
     });
     it("should get balance", async function () {
       let result = await this.tokenModule.getBalance(user1, {
         from: user1,
       });
-      console.log("Get balance cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token_mod;balance;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

@@ -1,5 +1,6 @@
 const { expect } = require("chai");
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
 const BasicCoin = artifacts.require("ERCCoin");
 const BasicCoinTest = artifacts.require("BasicCoinTest");
@@ -40,14 +41,12 @@ contract("ERCCoin", function (accounts) {
       registerEncoding,
       { from: user1 }
     );
-    console.log("Register cost: ", result.receipt.gasUsed);
 
     result = await this.basicCoin.protectionLayer(
       this.basicCoin.address,
       registerEncoding,
       { from: user2 }
     );
-    console.log("Register cost: ", result.receipt.gasUsed);
 
     expect(await this.basicCoin.getBalance(user1)).to.be.bignumber.equal("0");
     expect(await this.basicCoin.getBalance(user2)).to.be.bignumber.equal("0");
@@ -62,7 +61,6 @@ contract("ERCCoin", function (accounts) {
       mintToEncoding,
       { from: deployer }
     );
-    console.log("MintTo cost: ", result.receipt.gasUsed);
   });
 
   describe("when everything is set up", function () {
@@ -76,7 +74,11 @@ contract("ERCCoin", function (accounts) {
         transferEncoding,
         { from: user1 }
       );
-      console.log("Transfer cost", result.receipt.gasUsed);
+
+      fs.appendFileSync(
+        "./results/erc20_.csv",
+        `erc-coin;transfer;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

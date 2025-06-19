@@ -1,5 +1,6 @@
 const BasicCoin = artifacts.require("BasicCoin");
 const Vesting = artifacts.require("Vesting");
+const fs = require("node:fs");
 
 contract("Vesting", function (accounts) {
   const [deployer, user1, user2] = accounts;
@@ -36,13 +37,19 @@ contract("Vesting", function (accounts) {
         1000,
         { from: deployer }
       );
-      console.log("Init cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vesting;init;${result.receipt.gasUsed}\n`
+      );
     });
     it("should be able to release", async function () {
       let result = await this.vesting.release({
         from: deployer,
       });
-      console.log("Release cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vesting;release;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

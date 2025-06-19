@@ -1,6 +1,7 @@
 const { expectRevert } = require("@openzeppelin/test-helpers");
 const Auction = artifacts.require("Auction");
 const BasicCoin = artifacts.require("BasicCoin");
+const fs = require("node:fs");
 
 contract("Auction", function (accounts) {
   const [deployer, user1, user2] = accounts;
@@ -28,20 +29,32 @@ contract("Auction", function (accounts) {
     let result = await this.auction.start(this.basicCoin.address, 0, {
       from: deployer,
     });
-    console.log("Start cost", result.receipt.gasUsed);
+    fs.appendFileSync(
+      "./results/rosetta_gas.csv",
+      `auction;start;${result.receipt.gasUsed}\n`
+    );
   });
   describe("when everyting is set up", function () {
     it("user 1 should be able to bid", async function () {
       let result = await this.auction.bid(10, { from: user1 });
-      console.log("Bid cost", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `auction;bid;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 2 should be able to bid", async function () {
       let result = await this.auction.bid(11, { from: user2 });
-      console.log("Bid cost", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `auction;bid;${result.receipt.gasUsed}\n`
+      );
     });
     it("auctioneer should be able to end the auction", async function () {
       let result = await this.auction.end({ from: deployer });
-      console.log("End cost", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `auction;end;${result.receipt.gasUsed}\n`
+      );
     });
     describe("after the auction is ended", function () {
       it("user 1 should not be able to bid", async function () {
@@ -50,18 +63,6 @@ contract("Auction", function (accounts) {
           "0xffffffffffffffff"
         );
       });
-      //   xit("user 2 should not be able to bid", async function () {
-      //     let bidEncoding = auctionInterface.encodeFunctionData("bid", [
-      //       user2,
-      //       11,
-      //     ]);
-      //     await expectRevert(
-      //       this.basicCoin.protectionLayer(this.auction.address, bidEncoding, {
-      //         from: user2,
-      //       }),
-      //       "Transaction reverted without a reason string"
-      //     );
-      //   });
     });
   });
 });

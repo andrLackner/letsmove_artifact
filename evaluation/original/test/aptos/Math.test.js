@@ -1,4 +1,5 @@
 const Math = artifacts.require("math");
+const fs = require("node:fs");
 
 contract("math", function (accounts) {
   const [deployer, user1, user2] = accounts;
@@ -16,7 +17,10 @@ contract("math", function (accounts) {
           from: user1,
         }
       );
-      console.log("Math overflowAdd cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `math;overflowAdd;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call mulDiv", async function () {
       let result = await this.math.mulDiv(
@@ -27,7 +31,10 @@ contract("math", function (accounts) {
           from: user1,
         }
       );
-      console.log("Math mulDiv cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `math;mulDiv;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call mulDivU128", async function () {
       let result = await this.math.mulDivU128(
@@ -38,7 +45,10 @@ contract("math", function (accounts) {
           from: user1,
         }
       );
-      console.log("Math mulDivU128 cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `math;mulDivU128;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call mulToU128", async function () {
       let result = await this.math.mulToU128(
@@ -48,25 +58,37 @@ contract("math", function (accounts) {
           from: user1,
         }
       );
-      console.log("Math mulToU128 cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `math;mulToU128;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call sqrt", async function () {
       let result = await this.math.sqrt(4607431768211455, {
         from: user1,
       });
-      console.log("Math sqrt cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `math;sqrt;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call pow10", async function () {
       let result = await this.math.pow10(8, {
         from: user1,
       });
-      console.log("Math pow10 cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `math;pow10;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call minU64", async function () {
       let result = await this.math.minU64(4607431768211455, 4607431768211455, {
         from: user1,
       });
-      console.log("Math minU64 cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `math;minU64;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

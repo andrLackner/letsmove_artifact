@@ -1,4 +1,5 @@
 const ReqLevOriginal = artifacts.require("req_lev");
+const fs = require("node:fs");
 
 contract("req_lev", function (accounts) {
   const [deployer, user1, user2] = accounts;
@@ -22,7 +23,10 @@ contract("req_lev", function (accounts) {
         1000,
         { from: user1 }
       );
-      console.log("Create perp market cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `req_lev;create;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

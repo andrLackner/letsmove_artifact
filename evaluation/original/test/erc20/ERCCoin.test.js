@@ -1,4 +1,5 @@
 const { expect } = require("chai");
+const fs = require("node:fs");
 
 const BasicCoin = artifacts.require("ERCCoin");
 const BasicCoinTest = artifacts.require("ERCCoinTest");
@@ -31,7 +32,10 @@ contract("ERCCoin", function (accounts) {
       let result = await this.basicCoinTest.transfer(user1, "1", user2, {
         from: user1,
       });
-      console.log("Transfer cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/erc20_.csv",
+        `erc-coin;transfer;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

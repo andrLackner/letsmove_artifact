@@ -1,5 +1,5 @@
 const { time } = require("@openzeppelin/test-helpers");
-
+const fs = require("node:fs");
 const BasicCoin = artifacts.require("BasicCoin");
 const Vault = artifacts.require("Vault");
 
@@ -33,20 +33,29 @@ contract("Vault", function (accounts) {
       let result = await this.vault.init(user1, 1000, this.basicCoin.address, {
         from: deployer,
       });
-      console.log("Init cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;init;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("deployer should be able to deposit", async function () {
       let result = await this.vault.deposit(300, {
         from: deployer,
       });
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;deposit;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to withdraw", async function () {
       let result = await this.vault.withdraw(100, user1, {
         from: deployer,
       });
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to finalize", async function () {
       // increase time
@@ -54,19 +63,28 @@ contract("Vault", function (accounts) {
       let result = await this.vault.finalize({
         from: deployer,
       });
-      console.log("Finalize cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;finalize;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to withdraw", async function () {
       let result = await this.vault.withdraw(100, user1, {
         from: deployer,
       });
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to cancel", async function () {
       let result = await this.vault.cancel(user1, {
         from: deployer,
       });
-      console.log("Cancel cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;cancel;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

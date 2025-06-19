@@ -1,6 +1,6 @@
 const BasicCoin = artifacts.require("BasicCoin");
 const SimpleWallet = artifacts.require("SimpleWallet");
-
+const fs = require("node:fs");
 contract("SimpleWallet", function (accounts) {
   const [deployer, user1, user2] = accounts;
 
@@ -30,26 +30,38 @@ contract("SimpleWallet", function (accounts) {
       let result = await this.simpleWallet.initialize(this.basicCoin.address, {
         from: deployer,
       });
-      console.log("Initialize cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;init;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("user 1 should be able to deposit", async function () {
       let result = await this.simpleWallet.deposit(deployer, 100, {
         from: user1,
       });
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;deposit;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to withdraw", async function () {
       let result = await this.simpleWallet.withdraw({
         from: deployer,
       });
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 2 should be able to deposit", async function () {
       let result = await this.simpleWallet.deposit(deployer, 100, {
         from: user2,
       });
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;deposit;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to create a transaction", async function () {
       let result = await this.simpleWallet.createTransaction(
@@ -58,13 +70,19 @@ contract("SimpleWallet", function (accounts) {
         "ciao",
         { from: deployer }
       );
-      console.log("Create transaction cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;create_tx;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to execute a transaction", async function () {
       let result = await this.simpleWallet.executeTransaction(0, {
         from: deployer,
       });
-      console.log("Execute transaction cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;execute_tx;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

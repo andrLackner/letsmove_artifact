@@ -1,5 +1,6 @@
 const BasicCoin = artifacts.require("BasicCoin");
 const Escrow = artifacts.require("Escrow");
+const fs = require("node:fs");
 
 contract("Escrow", function (accounts) {
   const [deployer, user1, user2] = accounts;
@@ -31,15 +32,24 @@ contract("Escrow", function (accounts) {
       let result = await this.escrow.deposit(100, {
         from: user1,
       });
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `escrow;deposit;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 1 should be able to pay", async function () {
       let result = await this.escrow.pay({ from: user1 });
-      console.log("Pay cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `escrow;pay;${result.receipt.gasUsed}\n`
+      );
     });
     it("seller should be able to refund", async function () {
       let result = await this.escrow.refund({ from: deployer });
-      console.log("Refund cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `escrow;refund;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

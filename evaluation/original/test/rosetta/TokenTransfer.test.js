@@ -1,5 +1,6 @@
 const BasicCoin = artifacts.require("BasicCoin");
 const TokenTransfer = artifacts.require("TokenTransfer");
+const fs = require("node:fs");
 
 contract("TokenTransfer", function (accounts) {
   const [deployer, user1, user2] = accounts;
@@ -34,21 +35,30 @@ contract("TokenTransfer", function (accounts) {
         user1,
         { from: deployer }
       );
-      console.log("Init cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `token_transfer;init;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("deployer should be able to deposit", async function () {
       let result = await this.tokenTransfer.deposit(100, {
         from: deployer,
       });
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `token_transfer;deposit;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("user 1 should be able to withdraw", async function () {
       let result = await this.tokenTransfer.withdraw(deployer, 100, {
         from: user1,
       });
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `token_transfer;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

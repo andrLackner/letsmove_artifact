@@ -1,4 +1,5 @@
 const AliensEvents = artifacts.require("aliens_events");
+const fs = require("node:fs");
 
 contract("aliens_events", function (accounts) {
   const [deployer, user1, user2] = accounts;
@@ -14,7 +15,10 @@ contract("aliens_events", function (accounts) {
         0,
         { from: user1 }
       );
-      console.log("New withdraw event cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `alien_events;new_withdraw_event;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call newSetReferrerEvent", async function () {
       let result = await this.aliensEvents.newSetReferrerEvent(
@@ -23,13 +27,19 @@ contract("aliens_events", function (accounts) {
         0,
         { from: user1 }
       );
-      console.log("New set referrer event cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `alien_events;set_ref;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call newSetMintPriceEvent", async function () {
       let result = await this.aliensEvents.newSetMintPriceEvent(0, 0, {
         from: user1,
       });
-      console.log("New set mint price event cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `alien_events;set_mint_price;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

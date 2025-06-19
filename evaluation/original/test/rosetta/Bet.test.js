@@ -1,6 +1,6 @@
 const { time } = require("@openzeppelin/test-helpers");
 const { toNumber } = require("web3-utils");
-
+const fs = require("node:fs");
 const BasicCoin = artifacts.require("BasicCoin");
 const Bet = artifacts.require("Bet");
 
@@ -40,11 +40,17 @@ contract("Bet", function (accounts) {
     });
     it("user 1 should be able to join", async function () {
       let result = await this.bet.join(10, { from: user1 });
-      console.log("Join cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `bet;join;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 2 should be able to join", async function () {
       let result = await this.bet.join(10, { from: user2 });
-      console.log("Join cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `bet;join;${result.receipt.gasUsed}\n`
+      );
     });
     describe("after players have joined", function () {
       beforeEach(async function () {
@@ -66,12 +72,18 @@ contract("Bet", function (accounts) {
 
       it("oracle should be able to set winner", async function () {
         let result = await this.bet.win(user1, { from: oracle });
-        console.log("Win cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `bet;win;${result.receipt.gasUsed}\n`
+        );
       });
       it("after some time the bet should timeout", async function () {
         await time.increase(2000);
         let result = await this.bet.timeout({ from: oracle });
-        console.log("Timeout cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `bet;timeout;${result.receipt.gasUsed}\n`
+        );
       });
     });
   });

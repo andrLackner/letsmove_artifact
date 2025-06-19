@@ -1,6 +1,6 @@
 const { time } = require("@openzeppelin/test-helpers");
 const { toNumber } = require("web3-utils");
-
+const fs = require("node:fs");
 const BasicCoin = artifacts.require("BasicCoin");
 const CrowdFund = artifacts.require("Crowdfund");
 
@@ -46,25 +46,40 @@ contract("Crowdfund", function (accounts) {
     });
     it("user 1 should be able to donate", async function () {
       let result = await this.crowdfund.donate(100, { from: user1 });
-      console.log("Donate cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `crowdfund;donate;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 2 should be able to donate", async function () {
       let result = await this.crowdfund.donate(200, { from: user2 });
-      console.log("Donate cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `crowdfund;donate;${result.receipt.gasUsed}\n`
+      );
     });
     it("reclaimer should be able to donate", async function () {
       let result = await this.crowdfund.donate(200, { from: reclaimer });
-      console.log("Donate cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `crowdfund;donate;${result.receipt.gasUsed}\n`
+      );
     });
     it("reclaimer should be able to reclaim", async function () {
       // increase time to end the donation period
       await time.increase(2000);
       let result = await this.crowdfund.reclaim({ from: reclaimer });
-      console.log("Reclaim cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `crowdfund;reclaim;${result.receipt.gasUsed}\n`
+      );
     });
     it("receiver should be able to withdraw", async function () {
       let result = await this.crowdfund.withdraw({ from: receiver });
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `crowdfund;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

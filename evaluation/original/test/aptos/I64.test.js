@@ -1,5 +1,5 @@
 const { ethers } = require("ethers");
-
+const fs = require("node:fs");
 const I64Original = artifacts.require("i64");
 const I64OriginalTest = artifacts.require("I64Test");
 
@@ -41,91 +41,136 @@ contract("i64", function (accounts) {
       let result = await this.i64Test.zeroTest(user1, {
         from: user1,
       });
-      console.log("I64Original zeroTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;zeroTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call fromU64Test", async function () {
       let result = await this.i64Test.fromU64Test(user1, {
         from: user1,
       });
-      console.log("I64Original fromU64Test cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;fromU64Test;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call fromTest", async function () {
       let result = await this.i64Test.fromTest(user1, {
         from: user1,
       });
-      console.log("I64Original fromTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;fromTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call fromNegTest", async function () {
       let result = await this.i64Test.fromNegTest(user1, {
         from: user1,
       });
-      console.log("I64Original fromNegTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;fromNegTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call wrappingAddTest", async function () {
       let result = await this.i64Test.wrappingAddTest(user1, {
         from: user1,
       });
-      console.log("I64Original wrappingAddTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;wrappingAddTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call addTest", async function () {
       let result = await this.i64Test.addTest(user1, {
         from: user1,
       });
-      console.log("I64Original addTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;addTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call wrappingSubTest", async function () {
       let result = await this.i64Test.wrappingSubTest(user1, {
         from: user1,
       });
-      console.log("I64Original wrappingSubTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;wrappingSubTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call subTest", async function () {
       let result = await this.i64Test.subTest(user1, {
         from: user1,
       });
-      console.log("I64Original subTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;subTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call mulTest", async function () {
       let result = await this.i64Test.mulTest(user1, {
         from: user1,
       });
-      console.log("I64Original mulTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;mulTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call divTest", async function () {
       let result = await this.i64Test.divTest(user1, {
         from: user1,
       });
-      console.log("I64Original divTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;divTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call absTest", async function () {
       let result = await this.i64Test.absTest(user1, {
         from: user1,
       });
-      console.log("I64Original absTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;absTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call absU64Test", async function () {
       let result = await this.i64Test.absU64Test(user1, {
         from: user1,
       });
-      console.log("I64Original absU64Test cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;absU64Test;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call minTest", async function () {
       let result = await this.i64Test.minTest(user1, {
         from: user1,
       });
-      console.log("I64Original minTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;minTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call maxTest", async function () {
       let result = await this.i64Test.maxTest(user1, {
         from: user1,
       });
-      console.log("I64Original maxTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;maxTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call powTest", async function () {
       let result = await this.i64Test.powTest(user1, {
         from: user1,
       });
-      console.log("I64Original powTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;powTest;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

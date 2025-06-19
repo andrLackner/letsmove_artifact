@@ -1,4 +1,5 @@
 const MultiAdmin = artifacts.require("MultiAdmin");
+const fs = require("node:fs");
 
 contract("MultiAdmin", function (accounts) {
   const [deployer, user1, user2] = accounts;
@@ -12,13 +13,19 @@ contract("MultiAdmin", function (accounts) {
       let result = await this.multiAdmin.initialize({
         from: user1,
       });
-      console.log("Initialize cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `multi_admin;init;${result.receipt.gasUsed}\n`
+      );
     });
     it("should set admin", async function () {
       let result = await this.multiAdmin.setAdmin(user2, {
         from: user1,
       });
-      console.log("Set admin cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `multi_admin;set_cost;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });
