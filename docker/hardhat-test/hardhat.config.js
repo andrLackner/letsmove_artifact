@@ -1,11 +1,12 @@
 require("hardhat-move");
 require("hardhat-gas-reporter");
+require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-truffle5");
 
 module.exports = {
   gasReporter: {
     enabled: true,
-    outputJSONFile: "./results/aptos/gas.json",
+    outputJSONFile: "./results/gas.json",
     outputJSON: true,
   },
   solidity: {

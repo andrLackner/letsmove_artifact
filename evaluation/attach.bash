@@ -13,8 +13,12 @@ if [ "$ENV" == "IRM" ]; then
     compiler="irm"
 elif [ "$ENV" == "ORIGINAL" ]; then
     compiler="original"
+elif [ "$ENV" == "SOL" ]; then
+    compiler="solidity"
+    ENV=""
 else 
     echo "Unknown compiler $compiler"
+    exit 1
 fi
 
 docker run --rm                                                         \

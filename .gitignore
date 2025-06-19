@@ -5,3 +5,4 @@ evaluation/irm/results/*
 evaluation/original/contracts/aptos/*
 evaluation/original/contracts/rosetta/**/build
 evaluation/original/results/*
+evaluation/solidity/results/*
