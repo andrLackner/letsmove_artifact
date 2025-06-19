@@ -1,6 +1,7 @@
 const { time } = require("@openzeppelin/test-helpers");
 const { ethers } = require("ethers");
 const { toNumber } = require("web3-utils");
+const fs = require("node:fs");
 
 const BasicCoin = artifacts.require("BasicCoin");
 const BasicCoinTest = artifacts.require("BasicCoinTest");
@@ -138,7 +139,10 @@ contract("Crowdfund", function (accounts) {
         createEncoding,
         { from: deployer }
       );
-      console.log("Create cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `crowdfund;create;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 1 should be able to donate", async function () {
       let donateEncoding = crowdfundInterface.encodeFunctionData("donate", [
@@ -150,7 +154,10 @@ contract("Crowdfund", function (accounts) {
         donateEncoding,
         { from: user1 }
       );
-      console.log("Donate cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `donate;create;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 2 should be able to donate", async function () {
       let donateEncoding = crowdfundInterface.encodeFunctionData("donate", [
@@ -162,7 +169,10 @@ contract("Crowdfund", function (accounts) {
         donateEncoding,
         { from: user2 }
       );
-      console.log("Donate cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `crowdfund;donate;${result.receipt.gasUsed}\n`
+      );
     });
     it("reclaimer should be able to donate", async function () {
       let donateEncoding = crowdfundInterface.encodeFunctionData("donate", [
@@ -174,7 +184,10 @@ contract("Crowdfund", function (accounts) {
         donateEncoding,
         { from: reclaimer }
       );
-      console.log("Donate cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `crowdfund;donate;${result.receipt.gasUsed}\n`
+      );
     });
     it("reclaimer should be able to reclaim", async function () {
       // increase time to end the donation
@@ -187,7 +200,10 @@ contract("Crowdfund", function (accounts) {
         reclaimEncoding,
         { from: reclaimer }
       );
-      console.log("Reclaim cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `crowdfund;reclaim;${result.receipt.gasUsed}\n`
+      );
     });
     it("receiver should be able to withdraw", async function () {
       // increase time to end the donation
@@ -200,7 +216,10 @@ contract("Crowdfund", function (accounts) {
         withdrawEncoding,
         { from: receiver }
       );
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `crowdfund;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

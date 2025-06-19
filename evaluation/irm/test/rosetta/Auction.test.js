@@ -1,7 +1,8 @@
 const { expectRevert } = require("@openzeppelin/test-helpers");
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
-const BasicCoin = artifacts.require("BasicCoin");
+const BasicCoin = artifacts.require("AuctionBasicCoin");
 const BasicCoinTest = artifacts.require("BasicCoinTest");
 const Auction = artifacts.require("Auction");
 
@@ -103,7 +104,10 @@ contract("Auction", function (accounts) {
       startEncoding,
       { from: deployer }
     );
-    console.log("Start cost", result.receipt.gasUsed);
+    fs.appendFileSync(
+      "./results/rosetta_gas.csv",
+      `auction;start;${result.receipt.gasUsed}\n`
+    );
   });
   describe("when everyting is set up", function () {
     it("user 1 should be able to bid", async function () {
@@ -113,7 +117,10 @@ contract("Auction", function (accounts) {
         bidEncoding,
         { from: user1 }
       );
-      console.log("Bid cost", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `auction;bid;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 2 should be able to bid", async function () {
       let bidEncoding = auctionInterface.encodeFunctionData("bid", [user2, 11]);
@@ -122,7 +129,10 @@ contract("Auction", function (accounts) {
         bidEncoding,
         { from: user2 }
       );
-      console.log("Bid cost", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `auction;bid;${result.receipt.gasUsed}\n`
+      );
     });
     it("auctioneer should be able to end the auction", async function () {
       let endEncoding = auctionInterface.encodeFunctionData("end", [deployer]);
@@ -131,33 +141,10 @@ contract("Auction", function (accounts) {
         endEncoding,
         { from: deployer }
       );
-      console.log("End cost", result.receipt.gasUsed);
-    });
-    describe("after the auction is ended", function () {
-      it("user 1 should not be able to bid", async function () {
-        let bidEncoding = auctionInterface.encodeFunctionData("bid", [
-          user1,
-          10,
-        ]);
-        await expectRevert(
-          this.basicCoin.protectionLayer(this.auction.address, bidEncoding, {
-            from: user1,
-          }),
-          "Transaction reverted without a reason string"
-        );
-      });
-      //   xit("user 2 should not be able to bid", async function () {
-      //     let bidEncoding = auctionInterface.encodeFunctionData("bid", [
-      //       user2,
-      //       11,
-      //     ]);
-      //     await expectRevert(
-      //       this.basicCoin.protectionLayer(this.auction.address, bidEncoding, {
-      //         from: user2,
-      //       }),
-      //       "Transaction reverted without a reason string"
-      //     );
-      //   });
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `auction;end;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

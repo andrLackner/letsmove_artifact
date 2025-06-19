@@ -1,5 +1,6 @@
 const { BN } = require("@openzeppelin/test-helpers");
 const { expect } = require("chai");
+const fs = require("node:fs");
 
 const ERC20MV = artifacts.require("ERC20MV");
 

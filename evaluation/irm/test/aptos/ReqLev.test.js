@@ -1,4 +1,5 @@
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
 const ReqLev = artifacts.require("req_lev");
 
@@ -27,7 +28,10 @@ contract("req_lev", function (accounts) {
         createPerpMarketEncoding,
         { from: user1 }
       );
-      console.log("Create perp market cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `req_lev;createPerpMarket;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

@@ -1,4 +1,5 @@
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
 const ImperfectLocker = artifacts.require("imperfect_locker");
 
@@ -28,7 +29,10 @@ contract("imperfect_locker", function (accounts) {
         initializePoolEncoding,
         { from: user1 }
       );
-      console.log("Initialize pool cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `imperfect_locker;init_pool;${result.receipt.gasUsed}\n`
+      );
     });
     it("should update pool", async function () {
       let updatePoolEncoding = lockerInterface.encodeFunctionData(
@@ -40,7 +44,10 @@ contract("imperfect_locker", function (accounts) {
         updatePoolEncoding,
         { from: user1 }
       );
-      console.log("Update pool cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `imperfect_locker;update_pool;${result.receipt.gasUsed}\n`
+      );
     });
     it("should calculate impermanent loss", async function () {
       let calculateImpermanentLossEncoding = lockerInterface.encodeFunctionData(
@@ -52,7 +59,10 @@ contract("imperfect_locker", function (accounts) {
         calculateImpermanentLossEncoding,
         { from: user1 }
       );
-      console.log("Calculate impermanent loss cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `imperfect_locker;calc;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

@@ -1,5 +1,5 @@
 const { ethers } = require("ethers");
-
+const fs = require("node:fs");
 const Counter = artifacts.require("counter");
 
 contract("counter", function (accounts) {
@@ -29,7 +29,10 @@ contract("counter", function (accounts) {
         createCounterEncoding,
         { from: user1 }
       );
-      console.log("Create counter cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `counter;create;${result.receipt.gasUsed}\n`
+      );
     });
     it("should push counter", async function () {
       let pushCounterEncoding = counterInterface.encodeFunctionData(
@@ -41,7 +44,10 @@ contract("counter", function (accounts) {
         pushCounterEncoding,
         { from: user1 }
       );
-      console.log("Push counter cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `counter;push;${result.receipt.gasUsed}\n`
+      );
     });
     it("should create price", async function () {
       let createPriceEncoding = counterInterface.encodeFunctionData(
@@ -53,7 +59,10 @@ contract("counter", function (accounts) {
         createPriceEncoding,
         { from: user1 }
       );
-      console.log("Create price cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `counter;createPrice;${result.receipt.gasUsed}\n`
+      );
     });
     it("should push price", async function () {
       let pushPriceEncoding = counterInterface.encodeFunctionData(
@@ -65,7 +74,10 @@ contract("counter", function (accounts) {
         pushPriceEncoding,
         { from: user1 }
       );
-      console.log("Push price cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `counter;pushPrice;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

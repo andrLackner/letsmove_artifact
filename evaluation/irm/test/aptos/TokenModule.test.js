@@ -1,5 +1,5 @@
 const { ethers } = require("ethers");
-
+const fs = require("node:fs");
 const TokenModule = artifacts.require("TokenModule");
 
 contract("TokenModule", function (accounts) {
@@ -27,7 +27,10 @@ contract("TokenModule", function (accounts) {
         initializeBalanceEncoding,
         { from: user1 }
       );
-      console.log("Initialize balance cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token_module;init;${result.receipt.gasUsed}\n`
+      );
     });
     it("should initialize balance with zero", async function () {
       let initializeBalanceEncoding = tokensModuleInterface.encodeFunctionData(
@@ -39,9 +42,9 @@ contract("TokenModule", function (accounts) {
         initializeBalanceEncoding,
         { from: user2 }
       );
-      console.log(
-        "Initialize balance with zero cost: ",
-        result.receipt.gasUsed
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token_module;init;${result.receipt.gasUsed}\n`
       );
     });
     it("should transfer tokens", async function () {
@@ -54,13 +57,19 @@ contract("TokenModule", function (accounts) {
         transferEncoding,
         { from: user1 }
       );
-      console.log("Transfer tokens cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token_module;transfer;${result.receipt.gasUsed}\n`
+      );
     });
     it("should get balance", async function () {
       let result = await this.tokenModule.getBalance(user1, {
         from: user1,
       });
-      console.log("Get balance cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token_module;balance;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

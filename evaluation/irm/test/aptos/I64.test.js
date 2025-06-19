@@ -1,4 +1,5 @@
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
 const I64 = artifacts.require("i64");
 const I64Test = artifacts.require("I64Test");
@@ -46,7 +47,10 @@ contract("i64", function (accounts) {
         zeroTestEncoding,
         { from: user1 }
       );
-      console.log("I64 zeroTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;zeroTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call fromU64Test", async function () {
       let fromU64TestEncoding = I64TestInterface.encodeFunctionData(
@@ -58,7 +62,10 @@ contract("i64", function (accounts) {
         fromU64TestEncoding,
         { from: user1 }
       );
-      console.log("I64 fromU64Test cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;fromU64;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call fromTest", async function () {
       let fromTestEncoding = I64TestInterface.encodeFunctionData("fromTest", [
@@ -69,7 +76,10 @@ contract("i64", function (accounts) {
         fromTestEncoding,
         { from: user1 }
       );
-      console.log("I64 fromTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;fromTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call fromNegTest", async function () {
       let fromNegTestEncoding = I64TestInterface.encodeFunctionData(
@@ -81,7 +91,10 @@ contract("i64", function (accounts) {
         fromNegTestEncoding,
         { from: user1 }
       );
-      console.log("I64 fromNegTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;fromNegTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call wrappingAddTest", async function () {
       let wrappingAddTestEncoding = I64TestInterface.encodeFunctionData(
@@ -93,7 +106,10 @@ contract("i64", function (accounts) {
         wrappingAddTestEncoding,
         { from: user1 }
       );
-      console.log("I64 wrappingAddTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;wrappingAdd;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call addTest", async function () {
       let addTestEncoding = I64TestInterface.encodeFunctionData("addTest", [
@@ -104,7 +120,10 @@ contract("i64", function (accounts) {
         addTestEncoding,
         { from: user1 }
       );
-      console.log("I64 addTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;add;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call wrappingSubTest", async function () {
       let wrappingSubTestEncoding = I64TestInterface.encodeFunctionData(
@@ -116,7 +135,10 @@ contract("i64", function (accounts) {
         wrappingSubTestEncoding,
         { from: user1 }
       );
-      console.log("I64 wrappingSubTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;wrappingSub;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call subTest", async function () {
       let subTestEncoding = I64TestInterface.encodeFunctionData("subTest", [
@@ -127,7 +149,10 @@ contract("i64", function (accounts) {
         subTestEncoding,
         { from: user1 }
       );
-      console.log("I64 subTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;sub;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call mulTest", async function () {
       let mulTestEncoding = I64TestInterface.encodeFunctionData("mulTest", [
@@ -138,7 +163,10 @@ contract("i64", function (accounts) {
         mulTestEncoding,
         { from: user1 }
       );
-      console.log("I64 mulTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;mul;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call divTest", async function () {
       let divTestEncoding = I64TestInterface.encodeFunctionData("divTest", [
@@ -149,7 +177,10 @@ contract("i64", function (accounts) {
         divTestEncoding,
         { from: user1 }
       );
-      console.log("I64 divTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;div;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call absTest", async function () {
       let absTestEncoding = I64TestInterface.encodeFunctionData("absTest", [
@@ -160,7 +191,10 @@ contract("i64", function (accounts) {
         absTestEncoding,
         { from: user1 }
       );
-      console.log("I64 absTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;absTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call absU64Test", async function () {
       let absU64TestEncoding = I64TestInterface.encodeFunctionData(
@@ -172,7 +206,10 @@ contract("i64", function (accounts) {
         absU64TestEncoding,
         { from: user1 }
       );
-      console.log("I64 absU64Test cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;absU64Test;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call minTest", async function () {
       let minTestEncoding = I64TestInterface.encodeFunctionData("minTest", [
@@ -183,7 +220,10 @@ contract("i64", function (accounts) {
         minTestEncoding,
         { from: user1 }
       );
-      console.log("I64 minTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;callMint;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call maxTest", async function () {
       let maxTestEncoding = I64TestInterface.encodeFunctionData("maxTest", [
@@ -194,7 +234,10 @@ contract("i64", function (accounts) {
         maxTestEncoding,
         { from: user1 }
       );
-      console.log("I64 maxTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;maxTest;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call powTest", async function () {
       let powTestEncoding = I64TestInterface.encodeFunctionData("powTest", [
@@ -205,7 +248,10 @@ contract("i64", function (accounts) {
         powTestEncoding,
         { from: user1 }
       );
-      console.log("I64 powTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `i64;powTest;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

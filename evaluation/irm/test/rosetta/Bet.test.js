@@ -1,6 +1,7 @@
 const { time } = require("@openzeppelin/test-helpers");
 const { ethers } = require("ethers");
 const { toNumber } = require("web3-utils");
+const fs = require("node:fs");
 
 const BasicCoin = artifacts.require("BasicCoin");
 const BasicCoinTest = artifacts.require("BasicCoinTest");
@@ -112,7 +113,10 @@ contract("Bet", function (accounts) {
         joinEncoding,
         { from: user1 }
       );
-      console.log("Join cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `bet;join;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 2 should be able to join", async function () {
       let joinEncoding = betInterface.encodeFunctionData("join", [user2, 10]);
@@ -121,7 +125,10 @@ contract("Bet", function (accounts) {
         joinEncoding,
         { from: user2 }
       );
-      console.log("Join cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `bet;join;${result.receipt.gasUsed}\n`
+      );
     });
     describe("after players have joined", function () {
       beforeEach(async function () {
@@ -157,7 +164,10 @@ contract("Bet", function (accounts) {
           winEncoding,
           { from: deployer }
         );
-        console.log("Win cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `bet;win;${result.receipt.gasUsed}\n`
+        );
       });
       it("after some time the bet should timeout", async function () {
         await time.increase(2000);
@@ -167,38 +177,11 @@ contract("Bet", function (accounts) {
           timeoutEncoding,
           { from: deployer }
         );
-        console.log("Timeout cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `bet;timeout;${result.receipt.gasUsed}\n`
+        );
       });
     });
-    // describe('after players have joined', function () {
-    //     xit('user 1 should not be able to bid', async function () {
-    //         let bidEncoding = betInterface.encodeFunctionData('join', [
-    //             user1,
-    //             10,
-    //         ]);
-    //         await expectRevert(
-    //             this.basicCoin.protectionLayer(
-    //                 this.bet.address,
-    //                 bidEncoding,
-    //                 { from: user1 }
-    //             ),
-    //             'Transaction reverted without a reason string'
-    //         );
-    //     });
-    //     xit('user 2 should not be able to bid', async function () {
-    //         let bidEncoding = betInterface.encodeFunctionData('bid', [
-    //             user2,
-    //             11,
-    //         ]);
-    //         await expectRevert(
-    //             this.basicCoin.protectionLayer(
-    //                 this.bet.address,
-    //                 bidEncoding,
-    //                 { from: user2 }
-    //             ),
-    //             'Transaction reverted without a reason string'
-    //         );
-    //     });
-    // });
   });
 });

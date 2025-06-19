@@ -1,5 +1,5 @@
 const { ethers } = require("ethers");
-
+const fs = require("node:fs");
 const Token = artifacts.require("Token");
 
 contract("Token", function (accounts) {
@@ -29,7 +29,10 @@ contract("Token", function (accounts) {
         initializeEncoding,
         { from: user1 }
       );
-      console.log("Initialize cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token;init;${result.receipt.gasUsed}\n`
+      );
     });
     it("should initialize", async function () {
       let initializeEncoding = tokenInterface.encodeFunctionData(
@@ -41,7 +44,10 @@ contract("Token", function (accounts) {
         initializeEncoding,
         { from: user2 }
       );
-      console.log("Initialize cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token;init;${result.receipt.gasUsed}\n`
+      );
     });
     it("should mint", async function () {
       let mintEncoding = tokenInterface.encodeFunctionData("mint", [100]);
@@ -50,7 +56,10 @@ contract("Token", function (accounts) {
         mintEncoding,
         { from: user1 }
       );
-      console.log("Mint cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token;mint;${result.receipt.gasUsed}\n`
+      );
     });
     it("should transfer", async function () {
       let transferEncoding = tokenInterface.encodeFunctionData("transfer", [
@@ -62,13 +71,19 @@ contract("Token", function (accounts) {
         transferEncoding,
         { from: user1 }
       );
-      console.log("Transfer cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token;transfer;${result.receipt.gasUsed}\n`
+      );
     });
     it("should get balance", async function () {
       let result = await this.token.balanceOf(user2, {
         from: user1,
       });
-      console.log("Balance cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token;balance;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

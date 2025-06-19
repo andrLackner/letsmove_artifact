@@ -1,5 +1,6 @@
 const { time } = require("@openzeppelin/test-helpers");
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
 const BasicCoin = artifacts.require("BasicCoin");
 const BasicCoinTest = artifacts.require("BasicCoinTest");
@@ -28,9 +29,6 @@ contract("Vault", function (accounts) {
     "function finalize(address owner)",
     "function cancel(address owner, address recovery)",
   ];
-
-  let encoder = new ethers.utils.AbiCoder();
-  let basicCoinInterface = new ethers.utils.Interface(BasicCoinABI);
   let basicCoinTestInterface = new ethers.utils.Interface(BasicCoinTestABI);
   let vaultInterface = new ethers.utils.Interface(VaultABI);
 
@@ -119,7 +117,10 @@ contract("Vault", function (accounts) {
         initEncoding,
         { from: deployer }
       );
-      console.log("Init cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;init;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("deployer should be able to deposit", async function () {
@@ -132,7 +133,10 @@ contract("Vault", function (accounts) {
         depositEncoding,
         { from: deployer }
       );
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;deposit;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to withdraw", async function () {
       let withdrawEncoding = vaultInterface.encodeFunctionData("withdraw", [
@@ -145,7 +149,10 @@ contract("Vault", function (accounts) {
         withdrawEncoding,
         { from: deployer }
       );
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to finalize", async function () {
       // increase time
@@ -158,7 +165,10 @@ contract("Vault", function (accounts) {
         finalizeEncoding,
         { from: deployer }
       );
-      console.log("Finalize cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;finalize;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to withdraw", async function () {
       let withdrawEncoding = vaultInterface.encodeFunctionData("withdraw", [
@@ -171,7 +181,10 @@ contract("Vault", function (accounts) {
         withdrawEncoding,
         { from: deployer }
       );
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to cancel", async function () {
       let cancelEncoding = vaultInterface.encodeFunctionData("cancel", [
@@ -183,7 +196,10 @@ contract("Vault", function (accounts) {
         cancelEncoding,
         { from: deployer }
       );
-      console.log("Cancel cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vault;cancel;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

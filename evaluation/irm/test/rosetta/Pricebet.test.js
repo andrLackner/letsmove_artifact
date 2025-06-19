@@ -1,6 +1,7 @@
 const { time } = require("@openzeppelin/test-helpers");
 const { ethers } = require("ethers");
 const { toNumber } = require("web3-utils");
+const fs = require("node:fs");
 
 const BasicCoin = artifacts.require("BasicCoin");
 const BasicCoinTest = artifacts.require("BasicCoinTest");
@@ -131,7 +132,10 @@ contract("Pricebet", function (accounts) {
       );
 
       // Cost of creating the bet
-      console.log("Create cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `pricebet;create;${result.receipt.gasUsed}\n`
+      );
 
       let joinEncoding = pricebetInterface.encodeFunctionData("join", [
         user1,
@@ -143,7 +147,10 @@ contract("Pricebet", function (accounts) {
         { from: user1 }
       );
       // Cost of joining the bet
-      console.log("Join cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `pricebet;join;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 1 should be able to win the bet", async function () {
       let winEncoding = pricebetInterface.encodeFunctionData("win", [user1]);
@@ -153,7 +160,10 @@ contract("Pricebet", function (accounts) {
         { from: user1 }
       );
       // Cost of winning the bet
-      console.log("Win cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `pricebet;win;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to timeout the bet", async function () {
       // Increase the block number to simulate the timeout
@@ -166,7 +176,10 @@ contract("Pricebet", function (accounts) {
         { from: deployer }
       );
       // Cost of timing out the bet
-      console.log("Timeout cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `pricebet;timeout;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

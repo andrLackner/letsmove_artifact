@@ -1,4 +1,5 @@
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
 const BasicCoin = artifacts.require("BasicCoin");
 const BasicCoinTest = artifacts.require("BasicCoinTest");
@@ -120,7 +121,10 @@ contract("Vesting", function (accounts) {
         initEncoding,
         { from: deployer }
       );
-      console.log("Init cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vesting;init;${result.receipt.gasUsed}\n`
+      );
     });
     it("should be able to release", async function () {
       let releaseEncoding = vestingInterface.encodeFunctionData("release", []);
@@ -129,7 +133,10 @@ contract("Vesting", function (accounts) {
         releaseEncoding,
         { from: user1 }
       );
-      console.log("Release cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `vesting;release;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

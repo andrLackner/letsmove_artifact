@@ -1,4 +1,5 @@
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
 const MultiAdmin = artifacts.require("MultiAdmin");
 
@@ -26,7 +27,10 @@ contract("MultiAdmin", function (accounts) {
         initializeEncoding,
         { from: user1 }
       );
-      console.log("Initialize cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `multi_admin;init;${result.receipt.gasUsed}\n`
+      );
     });
     it("should set admin", async function () {
       let setAdminEncoding = multiAdminInterface.encodeFunctionData(
@@ -38,7 +42,10 @@ contract("MultiAdmin", function (accounts) {
         setAdminEncoding,
         { from: user1 }
       );
-      console.log("Set admin cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `multi_admin;set_admin;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

@@ -1,4 +1,5 @@
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
 const BasicCoin = artifacts.require("BasicCoin");
 const BasicCoinTest = artifacts.require("BasicCoinTest");
@@ -115,7 +116,10 @@ contract("TokenTransfer", function (accounts) {
         initEncoding,
         { from: deployer }
       );
-      console.log("Init cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `token_transfer;init;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("deployer should be able to deposit", async function () {
@@ -128,7 +132,10 @@ contract("TokenTransfer", function (accounts) {
         depositEncoding,
         { from: deployer }
       );
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `token_transfer;deposit;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("user 1 should be able to withdraw", async function () {
@@ -141,7 +148,10 @@ contract("TokenTransfer", function (accounts) {
         withdrawEncoding,
         { from: user1 }
       );
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `token_transfer;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

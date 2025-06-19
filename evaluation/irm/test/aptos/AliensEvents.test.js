@@ -1,5 +1,6 @@
 const { ethers } = require("ethers");
 const { artifacts } = require("hardhat");
+const fs = require("node:fs");
 
 const AliensEvents = artifacts.require("aliens_events");
 const AliensEventsTest = artifacts.require("AliensEventsTest");
@@ -38,7 +39,11 @@ contract("aliens_events", function (accounts) {
         newWithdrawEventEncoding,
         { from: user1 }
       );
-      console.log("New withdraw event cost: ", result.receipt.gasUsed);
+
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `alien_events;new_withdraw_event;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call newSetReferrerEvent", async function () {
       let newSetReferrerEventEncoding =
@@ -51,7 +56,10 @@ contract("aliens_events", function (accounts) {
         newSetReferrerEventEncoding,
         { from: user1 }
       );
-      console.log("New set referrer event cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `alien_events;set_ref;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call newSetMintPriceEvent", async function () {
       let newSetMintPriceEventEncoding =
@@ -64,7 +72,10 @@ contract("aliens_events", function (accounts) {
         newSetMintPriceEventEncoding,
         { from: user1 }
       );
-      console.log("New set mint price event cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `alien_events;mint_price_event;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

@@ -1,4 +1,5 @@
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
 const BasicCoin = artifacts.require("BasicCoin");
 const BasicCoinTest = artifacts.require("BasicCoinTest");
@@ -119,7 +120,10 @@ contract("Escrow", function (accounts) {
         createEncoding,
         { from: user1 }
       );
-      console.log("Create cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `escrow;create;${result.receipt.gasUsed}\n`
+      );
 
       let depositEncoding = escrowInterface.encodeFunctionData("deposit", [
         user2,
@@ -130,7 +134,10 @@ contract("Escrow", function (accounts) {
         depositEncoding,
         { from: user2 }
       );
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `escrow;deposit;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 2 should be able to pay", async function () {
       let payEncoding = escrowInterface.encodeFunctionData("pay", [user2]);
@@ -139,7 +146,10 @@ contract("Escrow", function (accounts) {
         payEncoding,
         { from: user2 }
       );
-      console.log("Pay cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `escrow;pay;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 1 should be able to refund", async function () {
       let refundEncoding = escrowInterface.encodeFunctionData("refund", [
@@ -150,7 +160,10 @@ contract("Escrow", function (accounts) {
         refundEncoding,
         { from: user1 }
       );
-      console.log("Refund cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `escrow;refund;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

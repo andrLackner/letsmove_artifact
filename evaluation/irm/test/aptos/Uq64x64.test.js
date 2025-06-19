@@ -1,5 +1,5 @@
 const { ethers } = require("ethers");
-
+const fs = require("node:fs");
 const Uq64x64 = artifacts.require("uq64x64");
 const Uq64x64Test = artifacts.require("Uq64x64Test");
 
@@ -40,7 +40,10 @@ contract("uq64x64", function (accounts) {
         testEncodeEncoding,
         { from: user1 }
       );
-      console.log("Uq64x64 testEncode cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `uq64x64;testEncode;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("should call testDecode", async function () {
@@ -53,7 +56,10 @@ contract("uq64x64", function (accounts) {
         testDecodeEncoding,
         { from: user1 }
       );
-      console.log("Uq64x64 testDecode cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `uq64x64;testDecode;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("should call testToU128", async function () {
@@ -78,7 +84,10 @@ contract("uq64x64", function (accounts) {
         testMulEncoding,
         { from: user1 }
       );
-      console.log("Uq64x64 testMul cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `uq64x64;testMul;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("should call testDiv", async function () {
@@ -92,7 +101,10 @@ contract("uq64x64", function (accounts) {
           from: user1,
         }
       );
-      console.log("Uq64x64 testDiv cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `uq64x64;testDiv;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call testFraction", async function () {
       let testFractionEncoding = Uq64x64TestInterface.encodeFunctionData(
@@ -104,7 +116,10 @@ contract("uq64x64", function (accounts) {
         testFractionEncoding,
         { from: user1 }
       );
-      console.log("Uq64x64 testFraction cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `uq64x64;testFraction;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call testCompare", async function () {
       let testCompareEncoding = Uq64x64TestInterface.encodeFunctionData(
@@ -116,7 +131,10 @@ contract("uq64x64", function (accounts) {
         testCompareEncoding,
         { from: user1 }
       );
-      console.log("Uq64x64 testCompare cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `uq64x64;testCompare;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call testIsZero", async function () {
       let testIsZeroEncoding = Uq64x64TestInterface.encodeFunctionData(
@@ -128,7 +146,10 @@ contract("uq64x64", function (accounts) {
         testIsZeroEncoding,
         { from: user1 }
       );
-      console.log("Uq64x64 testIsZero cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `uq64x64;testIsZero;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

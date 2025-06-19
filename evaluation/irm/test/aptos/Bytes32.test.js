@@ -1,4 +1,5 @@
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
 const Bytes32 = artifacts.require("bytes32");
 const Bytes32Test = artifacts.require("Bytes32Test");
@@ -38,7 +39,10 @@ contract("bytes32", function (accounts) {
         zeroBytes32Encoding,
         { from: user1 }
       );
-      console.log("Bytes32 zeroBytes32Test cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `bytes32;zeroBytes32;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("should call ffBytes32Test", async function () {
@@ -51,7 +55,10 @@ contract("bytes32", function (accounts) {
         ffBytes32Encoding,
         { from: user1 }
       );
-      console.log("Bytes32 ffBytes32Test cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `bytes32;ffBytes32;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call isZeroTest", async function () {
       let isZeroEncoding = Bytes32TestInterface.encodeFunctionData(
@@ -63,7 +70,10 @@ contract("bytes32", function (accounts) {
         isZeroEncoding,
         { from: user1 }
       );
-      console.log("Bytes32 isZeroTest cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `bytes32;isZero;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call tobytes32Test", async function () {
       let tobytes32Encoding = Bytes32TestInterface.encodeFunctionData(
@@ -75,7 +85,10 @@ contract("bytes32", function (accounts) {
         tobytes32Encoding,
         { from: user1 }
       );
-      console.log("Bytes32 tobytes32Test cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `bytes32;toBytes32;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call frombytes32Test", async function () {
       let frombytes32Encoding = Bytes32TestInterface.encodeFunctionData(
@@ -87,7 +100,10 @@ contract("bytes32", function (accounts) {
         frombytes32Encoding,
         { from: user1 }
       );
-      console.log("Bytes32 frombytes32Test cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `bytes32;fromBytes32;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

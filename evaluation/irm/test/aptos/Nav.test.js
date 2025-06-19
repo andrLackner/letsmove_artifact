@@ -1,5 +1,6 @@
 const { ethers } = require("ethers");
 const Nav = artifacts.require("nav");
+const fs = require("node:fs");
 
 contract("nav", function (accounts) {
   const [deployer, user1, user2] = accounts;
@@ -27,7 +28,10 @@ contract("nav", function (accounts) {
         initNavEncoding,
         { from: user1 }
       );
-      console.log("Init nav cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `nav;init;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call updateAssetValue", async function () {
       let updateAssetValueEncoding = aliensEventsInterface.encodeFunctionData(
@@ -39,7 +43,10 @@ contract("nav", function (accounts) {
         updateAssetValueEncoding,
         { from: user1 }
       );
-      console.log("Update asset value cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `nav;updateAssetVal;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call updateTokenSupply", async function () {
       let updateTokenSupplyEncoding = aliensEventsInterface.encodeFunctionData(
@@ -51,7 +58,10 @@ contract("nav", function (accounts) {
         updateTokenSupplyEncoding,
         { from: user1 }
       );
-      console.log("Update token supply cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `nav;updateTokenSupply;${result.receipt.gasUsed}\n`
+      );
     });
     it("should call calculateNav", async function () {
       let calculateNavEncoding = aliensEventsInterface.encodeFunctionData(
@@ -63,7 +73,10 @@ contract("nav", function (accounts) {
         calculateNavEncoding,
         { from: user1 }
       );
-      console.log("Calculate nav cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `nav;calcNav;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

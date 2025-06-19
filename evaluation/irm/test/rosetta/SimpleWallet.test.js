@@ -1,4 +1,5 @@
 const { ethers } = require("ethers");
+const fs = require("node:fs");
 
 const BasicCoin = artifacts.require("BasicCoin");
 const BasicCoinTest = artifacts.require("BasicCoinTest");
@@ -116,7 +117,10 @@ contract("SimpleWallet", function (accounts) {
         initializeEncoding,
         { from: deployer }
       );
-      console.log("Initialize cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;initialize;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("user 1 should be able to deposit", async function () {
@@ -129,7 +133,10 @@ contract("SimpleWallet", function (accounts) {
         depositEncoding,
         { from: user1 }
       );
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;deposit;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to withdraw", async function () {
       let withdrawEncoding = simpleWalletInterface.encodeFunctionData(
@@ -141,7 +148,10 @@ contract("SimpleWallet", function (accounts) {
         withdrawEncoding,
         { from: deployer }
       );
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
     it("user 2 should be able to deposit", async function () {
       let depositEncoding = simpleWalletInterface.encodeFunctionData(
@@ -153,7 +163,10 @@ contract("SimpleWallet", function (accounts) {
         depositEncoding,
         { from: user2 }
       );
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;deposit;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("deployer should be able to create a transaction", async function () {
@@ -166,7 +179,10 @@ contract("SimpleWallet", function (accounts) {
         createTransactionEncoding,
         { from: deployer }
       );
-      console.log("Create transaction cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;create_tx;${result.receipt.gasUsed}\n`
+      );
     });
     it("deployer should be able to execute a transaction", async function () {
       let executeTransactionEncoding = simpleWalletInterface.encodeFunctionData(
@@ -178,7 +194,10 @@ contract("SimpleWallet", function (accounts) {
         executeTransactionEncoding,
         { from: deployer }
       );
-      console.log("Execute transaction cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_wallet;execute_tx;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });
