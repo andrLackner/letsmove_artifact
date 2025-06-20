@@ -1,5 +1,4 @@
 require("hardhat-move");
-require("hardhat-gas-reporter");
 require("@nomiclabs/hardhat-waffle");
 require("@nomiclabs/hardhat-truffle5");
 

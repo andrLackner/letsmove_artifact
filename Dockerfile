@@ -48,4 +48,7 @@ WORKDIR /app/hardhat-test
 COPY ./docker/evaluate.bash ./evaluate.bash
 RUN chmod u+x evaluate.bash
 
+COPY ./docker/vul_check.bash ./vul_check.bash
+RUN chmod u+x vul_check.bash
+
 ENTRYPOINT []
