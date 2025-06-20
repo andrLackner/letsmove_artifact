@@ -15,7 +15,16 @@ R2=$(echo "($ORIGINAL_COIN - $SOL)*100/$SOL" | bc)
 R3=$(echo "($IRM_COIN - $SOL)*100/$SOL" | bc)
 R4=$(echo "($IRM_COIN - $ORIGINAL_COIN)*100/($IRM_COIN - $SOL)" | bc)
 
+echo "ERC-20:               $SOL"
+echo "ERC-20MV (Original):  $ORIGINAL_MV"
+echo "ERC-20MV (IRM):       $IRM_MV"
+echo "ERC-Coin (Original):  $ORIGINAL_COIN"
+echo "ERC-Coin (IRM):       $IRM_COIN"
+
+echo -e "\n\n"
+
 echo -e "C2.1: ERC-20 vs ERC-20MV:           \t$R1%"
 echo -e "C2.2: ERC-20 vs ERC-Coin (Original):\t$R2%"
 echo -e "C2.3: ERC-20 vs ERC-Coin (IRM):     \t$R3%"
 echo -e "C2.4: Overhead due to protections:  \t$R4%"
+

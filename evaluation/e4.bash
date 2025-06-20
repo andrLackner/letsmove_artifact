@@ -3,8 +3,30 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-IRM=$(cut -f 2 -d \;  "$SCRIPT_DIR/irm/results/aptos_gas_final.csv" | sort | cut -f 2 -d \;)
-ORIG=$(cut -f 2 -d \;  "$SCRIPT_DIR/original/results/aptos_gas_final.csv" | sort | cut -f 2 -d \;)
+LBL=$(sort "$SCRIPT_DIR/irm/results/aptos_gas_final.csv" | cut -f 1 -d \;)
+readarray -t LBL_ARR < <(echo "$LBL")
+
+IRM=$(sort "$SCRIPT_DIR/irm/results/aptos_gas_final.csv" | cut -f 2 -d \;)
+readarray -t IRM_ARR < <(echo "$IRM")
+
+ORIG=$(sort "$SCRIPT_DIR/original/results/aptos_gas_final.csv" | cut -f 2 -d \;)
+readarray -t ORIG_ARR < <(echo "$ORIG")
+
+echo "------------------------------------------------------------"
+printf "%-20s %-10s %-10s %-10s\n" "Contract" "IRM" "M2E" "DIFF"
+echo "------------------------------------------------------------"
+for ((i=0; i<${#IRM_ARR[@]}; i++)); do
+    label=${LBL_ARR[i]}
+    m2e=${ORIG_ARR[i]}
+    irm=${IRM_ARR[i]}
+
+    diff=$(echo "$irm-$m2e" | bc)
+
+    printf "%-20s %-10s %-10s %-10s\n" "$label" "$irm" "$m2e" "$diff"
+done
+echo "----------------------------------------------------------"
+echo -e "----------------------------------------------------------\n\n"
+
 
 
 IRM_TOTAL=$(echo "$IRM" | paste -sd+ - | bc)
