@@ -31,7 +31,7 @@ contract("ERC20Mock", function (accounts) {
 
       fs.appendFileSync(
         "./results/erc20_gas.csv",
-        `erc20_mv;transfer;${result.receipt.gasUsed}\n`
+        `erc20;transfer;${result.receipt.gasUsed}\n`
       );
     });
   });
