@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm ./results/*
+rm -f ./results/*
 npx hardhat test
 
 files=(
