@@ -1,6 +1,6 @@
 const { time } = require("@openzeppelin/test-helpers");
 const { toNumber } = require("web3-utils");
-
+const fs = require("node:fs");
 const Bet = artifacts.require("Bet");
 
 contract("Bet", function (accounts) {
@@ -11,30 +11,36 @@ contract("Bet", function (accounts) {
 
   describe("Win execution", async function () {
     before(async function () {
-      this.bet = await Bet.new(oracle, user2, blocks, {
+      this.Bet = await Bet.new(oracle, user2, blocks, {
         from: user1,
         value: payableValue,
       });
     });
     describe("After deployment", async function () {
       it("User2 could join the bet", async function () {
-        let result = await this.bet.join({
+        let result = await this.Bet.join({
           from: user2,
           value: payableValue,
         });
-        console.log("Join cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `bet;join;${result.receipt.gasUsed}\n`
+        );
       });
       it("Oracle could decide the winner", async function () {
-        let result = await this.bet.win(1, {
+        let result = await this.Bet.win(1, {
           from: oracle,
         });
-        console.log("Win cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `bet;win;${result.receipt.gasUsed}\n`
+        );
       });
     });
   });
   describe("Timeout execution", async function () {
     before(async function () {
-      this.bet = await Bet.new(oracle, user2, blocks, {
+      this.Bet = await Bet.new(oracle, user2, blocks, {
         from: user1,
         value: payableValue,
       });
@@ -42,11 +48,14 @@ contract("Bet", function (accounts) {
 
     describe("After deployment", async function () {
       it("User2 could join the bet", async function () {
-        let result = await this.bet.join({
+        let result = await this.Bet.join({
           from: user2,
           value: payableValue,
         });
-        console.log("Join cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `bet;join;${result.receipt.gasUsed}\n`
+        );
       });
       it("Anyone could timeout", async function () {
         await time.advanceBlockTo(
@@ -54,10 +63,13 @@ contract("Bet", function (accounts) {
         );
         console.log("Block number:", toNumber(await time.latestBlock()));
 
-        let result = await this.bet.timeout({
+        let result = await this.Bet.timeout({
           from: user1,
         });
-        console.log("Timeout cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `bet;timeout;${result.receipt.gasUsed}\n`
+        );
       });
     });
   });

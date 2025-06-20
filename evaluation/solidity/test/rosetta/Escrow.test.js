@@ -1,5 +1,5 @@
 const Escrow = artifacts.require("Escrow");
-
+const fs = require("node:fs");
 contract("Escrow", async function (accounts) {
   const [deployer, user1, user2] = accounts;
 
@@ -17,13 +17,19 @@ contract("Escrow", async function (accounts) {
           from: user1,
           value: payableValue,
         });
-        console.log("Deposit cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `escrow;deposit;${result.receipt.gasUsed}\n`
+        );
       });
       it("User1 could pay", async function () {
         let result = await this.escrow.pay({
           from: user1,
         });
-        console.log("Pay cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `escrow;pay;${result.receipt.gasUsed}\n`
+        );
       });
     });
   });
@@ -40,13 +46,19 @@ contract("Escrow", async function (accounts) {
           from: user1,
           value: payableValue,
         });
-        console.log("Deposit cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `escrow;deposit;${result.receipt.gasUsed}\n`
+        );
       });
       it("User2 could refund", async function () {
         let result = await this.escrow.refund({
           from: user2,
         });
-        console.log("Refund cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `escrow;refund;${result.receipt.gasUsed}\n`
+        );
       });
     });
   });

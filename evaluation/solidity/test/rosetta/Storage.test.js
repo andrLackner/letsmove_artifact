@@ -1,5 +1,5 @@
 const { ethers } = require("ethers");
-
+const fs = require("node:fs");
 const Storage = artifacts.require("Storage");
 
 contract("Storage", async function (accounts) {
@@ -14,13 +14,19 @@ contract("Storage", async function (accounts) {
         ethers.utils.formatBytes32String("ciao"),
         { from: user1 }
       );
-      console.log("Store bytes cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `storage;storeBytes;${result.receipt.gasUsed}\n`
+      );
     });
     it("User1 could store string", async function () {
       let result = await this.storage.storeString("ciao", {
         from: user1,
       });
-      console.log("Store string cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `storage;storeString;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

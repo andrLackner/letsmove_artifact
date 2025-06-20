@@ -1,6 +1,6 @@
 const { time } = require("@openzeppelin/test-helpers");
 const { toNumber } = require("web3-utils");
-
+const fs = require("node:fs");
 const PriceBet = artifacts.require("PriceBet");
 const ExchangeRate = artifacts.require("Exchange");
 
@@ -27,13 +27,19 @@ contract("PriceBet", async function (accounts) {
           from: user1,
           value: 1000,
         });
-        console.log("Join cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `pricebet;join;${result.receipt.gasUsed}\n`
+        );
       });
       it("User1 could win", async function () {
         let result = await this.priceBet.win({
           from: user1,
         });
-        console.log("Win cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `pricebet;win;${result.receipt.gasUsed}\n`
+        );
       });
     });
   });
@@ -58,7 +64,10 @@ contract("PriceBet", async function (accounts) {
           from: user1,
           value: 1000,
         });
-        console.log("Join cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `pricebet;join;${result.receipt.gasUsed}\n`
+        );
       });
       it("Anyone could timeout", async function () {
         // forward VM time
@@ -67,7 +76,10 @@ contract("PriceBet", async function (accounts) {
         let result = await this.priceBet.timeout({
           from: user1,
         });
-        console.log("Timeout cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `pricebet;timeout;${result.receipt.gasUsed}\n`
+        );
       });
     });
   });

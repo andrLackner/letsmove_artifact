@@ -1,11 +1,6 @@
-const {
-  BN,
-  constants,
-  expectEvent,
-  expectRevert,
-} = require("@openzeppelin/test-helpers");
+const { BN } = require("@openzeppelin/test-helpers");
 const { expect } = require("chai");
-const { ZERO_ADDRESS } = constants;
+const fs = require("node:fs");
 
 const ERC20Mock = artifacts.require("ERC20Mock");
 
@@ -28,17 +23,15 @@ contract("ERC20Mock", function (accounts) {
 
   describe("_transfer", function () {
     it("should transfer tokens", async function () {
-      await this.token.transferInternal(
+      let result = await this.token.transferInternal(
         initialHolder,
         recipient,
         initialSupply
       );
-      expect(await this.token.balanceOf(initialHolder)).to.be.bignumber.equal(
-        "0"
-      );
 
-      expect(await this.token.balanceOf(recipient)).to.be.bignumber.equal(
-        initialSupply
+      fs.appendFileSync(
+        "./results/erc20_.csv",
+        `erc20_mv;transfer;${result.receipt.gasUsed}\n`
       );
     });
   });

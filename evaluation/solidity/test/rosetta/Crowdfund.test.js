@@ -1,6 +1,6 @@
 const { time } = require("@openzeppelin/test-helpers");
 const { toNumber } = require("web3-utils");
-
+const fs = require("node:fs");
 const Crowdfund = artifacts.require("Crowdfund");
 
 contract("Crowdfund", async function (accounts) {
@@ -25,14 +25,20 @@ contract("Crowdfund", async function (accounts) {
           from: user1,
           value: payableValue,
         });
-        console.log("Join cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `crowdfund;join;${result.receipt.gasUsed}\n`
+        );
       });
       it("User2 could donate", async function () {
         let result = await this.crowdfund.donate({
           from: user2,
           value: payableValue,
         });
-        console.log("Join cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `crowdfund;join;${result.receipt.gasUsed}\n`
+        );
       });
       it("Deployer could withdraw", async function () {
         // increase the block number to simulate the passage of time
@@ -41,7 +47,10 @@ contract("Crowdfund", async function (accounts) {
         let result = await this.crowdfund.withdraw({
           from: deployer,
         });
-        console.log("Withdraw cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `crowdfund;withdraw;${result.receipt.gasUsed}\n`
+        );
       });
     });
   });
@@ -80,7 +89,10 @@ contract("Crowdfund", async function (accounts) {
         let result = await this.crowdfund.reclaim({
           from: user1,
         });
-        console.log("Reclaim cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `crowdfund;reclaim;${result.receipt.gasUsed}\n`
+        );
       });
     });
   });

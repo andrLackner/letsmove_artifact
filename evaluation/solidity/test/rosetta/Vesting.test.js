@@ -1,5 +1,5 @@
 const { time } = require("@openzeppelin/test-helpers");
-
+const fs = require("node:fs");
 const Vesting = artifacts.require("Vesting");
 
 contract("Vesting", async function (accounts) {
@@ -17,7 +17,10 @@ contract("Vesting", async function (accounts) {
         let result = await this.vesting.release({
           from: user1,
         });
-        console.log("Release cost: ", result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `vesting;release;${result.receipt.gasUsed}\n`
+        );
       });
     });
   });

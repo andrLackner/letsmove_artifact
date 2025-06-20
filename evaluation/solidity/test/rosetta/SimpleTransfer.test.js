@@ -1,5 +1,5 @@
 const SimpleTransfer = artifacts.require("SimpleTransfer");
-
+const fs = require("node:fs");
 contract("SimpleTransfer", async function (accounts) {
   const [deployer, user1, user2] = accounts;
 
@@ -15,13 +15,19 @@ contract("SimpleTransfer", async function (accounts) {
         from: user1,
         value: 1000,
       });
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_transfer;deposit;${result.receipt.gasUsed}\n`
+      );
     });
     it("User2 could withdraw", async function () {
       let result = await this.simpleTransfer.withdraw(100, {
         from: user2,
       });
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `simple_transfer;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });

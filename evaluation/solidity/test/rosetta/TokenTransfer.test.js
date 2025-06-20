@@ -1,6 +1,6 @@
 const TokenTransfer = artifacts.require("TokenTransfer");
 const ERC20Token = artifacts.require("ERC20Mock");
-
+const fs = require("node:fs");
 contract("TokenTransfer", async function (accounts) {
   const [deployer, user1, user2] = accounts;
 
@@ -26,13 +26,19 @@ contract("TokenTransfer", async function (accounts) {
       let result = await this.tokenTransfer.deposit(100, {
         from: user1,
       });
-      console.log("Deposit cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `token_transfer;deposit;${result.receipt.gasUsed}\n`
+      );
     });
     it("User2 could withdraw", async function () {
       let result = await this.tokenTransfer.withdraw(100, {
         from: user2,
       });
-      console.log("Withdraw cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/rosetta_gas.csv",
+        `token_transfer;withdraw;${result.receipt.gasUsed}\n`
+      );
     });
   });
 });
