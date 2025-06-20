@@ -15,6 +15,7 @@ contract("Vault", async function (accounts) {
         from: deployer,
         value: payableValue,
       });
+      fs.appendFileSync("./results/rosetta_gas.csv", `vault;init;0\n`);
     });
     describe("After deployment", async function () {
       it("Owner could withdraw", async function () {
@@ -52,16 +53,12 @@ contract("Vault", async function (accounts) {
     describe("After deployment", async function () {
       it("Owner could deposit", async function () {
         let [deployer] = await ethers.getSigners();
-        let result = await (
+        await (
           await deployer.sendTransaction({
             to: this.vault.address,
             value: 1000,
           })
         ).wait();
-        fs.appendFileSync(
-          "./results/rosetta_gas.csv",
-          `vault;deposit;${result.gasUsed}\n`
-        );
       });
       it("Owner could withdraw", async function () {
         let result = await this.vault.withdraw(receiver, 100, {

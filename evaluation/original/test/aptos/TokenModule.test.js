@@ -22,6 +22,10 @@ contract("TokenModule", function (accounts) {
       let result = await this.tokenModule.initializeBalance(0, {
         from: user2,
       });
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `token_mod;balance;${result.receipt.gasUsed}\n`
+      );
     });
     it("should transfer tokens", async function () {
       let result = await this.tokenModule.transfer(user2, 100, {

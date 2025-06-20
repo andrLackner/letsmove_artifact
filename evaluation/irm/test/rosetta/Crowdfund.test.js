@@ -139,10 +139,6 @@ contract("Crowdfund", function (accounts) {
         createEncoding,
         { from: deployer }
       );
-      fs.appendFileSync(
-        "./results/rosetta_gas.csv",
-        `crowdfund;create;${result.receipt.gasUsed}\n`
-      );
     });
     it("user 1 should be able to donate", async function () {
       let donateEncoding = crowdfundInterface.encodeFunctionData("donate", [
@@ -156,7 +152,7 @@ contract("Crowdfund", function (accounts) {
       );
       fs.appendFileSync(
         "./results/rosetta_gas.csv",
-        `donate;create;${result.receipt.gasUsed}\n`
+        `crowdfund;donate;${result.receipt.gasUsed}\n`
       );
     });
     it("user 2 should be able to donate", async function () {

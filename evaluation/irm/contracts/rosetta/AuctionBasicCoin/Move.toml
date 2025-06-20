@@ -1,6 +1,0 @@
-[package]
-name = "AuctionBasicCoin"
-version = "0.0.0"
-
-[dependencies]
-EvmStdlib = { local = "../../../libs/stdlib" }

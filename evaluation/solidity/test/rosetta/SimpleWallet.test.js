@@ -7,6 +7,13 @@ contract("SimpleWallet", async function (accounts) {
     this.simpleWallet = await SimpleWallet.new(user1, {
       from: deployer,
     });
+
+    // Add 0 - entry for methods not needed in Solidty but in other versions:
+    fs.appendFileSync("./results/rosetta_gas.csv", `simple_wallet;init;0\n`);
+    fs.appendFileSync(
+      "./results/rosetta_gas.csv",
+      `simple_wallet;withdraw;0\n`
+    );
   });
   describe("After deployment", async function () {
     it("User2 could deposit", async function () {
@@ -17,15 +24,6 @@ contract("SimpleWallet", async function (accounts) {
       fs.appendFileSync(
         "./results/rosetta_gas.csv",
         `simple_wallet;deposit;${result.receipt.gasUsed}\n`
-      );
-    });
-    it("User1 could withdraw", async function () {
-      let result = await this.simpleWallet.withdraw({
-        from: user1,
-      });
-      fs.appendFileSync(
-        "./results/rosetta_gas.csv",
-        `simple_wallet;withdraw;${result.receipt.gasUsed}\n`
       );
     });
     it("User2 could deposit", async function () {

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ $# -ne 2 ]; then
-    echo "Usage: $0 (IRM|ORIGINAL) DOCKER_CONTAINER_NAME"
+    echo "Usage: $0 (IRM|ORIGINAL|SOL) DOCKER_CONTAINER_NAME"
     exit 1
 fi
 

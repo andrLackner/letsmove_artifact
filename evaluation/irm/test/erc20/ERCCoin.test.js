@@ -76,7 +76,7 @@ contract("ERCCoin", function (accounts) {
       );
 
       fs.appendFileSync(
-        "./results/erc20_.csv",
+        "./results/erc20_gas.csv",
         `erc-coin;transfer;${result.receipt.gasUsed}\n`
       );
     });

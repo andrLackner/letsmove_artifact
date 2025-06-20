@@ -18,10 +18,10 @@ contract("Token", function (accounts) {
     });
     it("should initialize", async function () {
       let result = await this.token.initialize({ from: user2 });
-      fs.appendFileSync(
-        "./results/aptos_gas.csv",
-        `token;init;${result.receipt.gasUsed}\n`
-      );
+      // fs.appendFileSync(
+      //   "./results/aptos_gas.csv",
+      //   `token;init;${result.receipt.gasUsed}\n`
+      // );
     });
     it("should mint", async function () {
       let result = await this.token.mint(100, { from: user1 });

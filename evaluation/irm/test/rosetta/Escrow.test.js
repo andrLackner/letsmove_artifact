@@ -120,10 +120,6 @@ contract("Escrow", function (accounts) {
         createEncoding,
         { from: user1 }
       );
-      fs.appendFileSync(
-        "./results/rosetta_gas.csv",
-        `escrow;create;${result.receipt.gasUsed}\n`
-      );
 
       let depositEncoding = escrowInterface.encodeFunctionData("deposit", [
         user2,

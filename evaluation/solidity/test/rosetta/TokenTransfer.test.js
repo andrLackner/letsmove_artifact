@@ -20,6 +20,7 @@ contract("TokenTransfer", async function (accounts) {
       1000,
       { from: deployer }
     );
+    fs.appendFileSync("./results/rosetta_gas.csv", `token_transfer;init;0\n`);
   });
   describe("After deployment", async function () {
     it("User1 could deposit", async function () {

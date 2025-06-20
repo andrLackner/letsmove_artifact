@@ -44,10 +44,10 @@ contract("Token", function (accounts) {
         initializeEncoding,
         { from: user2 }
       );
-      fs.appendFileSync(
-        "./results/aptos_gas.csv",
-        `token;init;${result.receipt.gasUsed}\n`
-      );
+      // fs.appendFileSync(
+      //   "./results/aptos_gas.csv",
+      //   `token;init;${result.receipt.gasUsed}\n`
+      // );
     });
     it("should mint", async function () {
       let mintEncoding = tokenInterface.encodeFunctionData("mint", [100]);

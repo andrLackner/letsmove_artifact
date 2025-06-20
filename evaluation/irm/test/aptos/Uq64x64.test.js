@@ -72,7 +72,10 @@ contract("uq64x64", function (accounts) {
         testToU128Encoding,
         { from: user1 }
       );
-      console.log("Uq64x64 testToU128 cost: ", result.receipt.gasUsed);
+      fs.appendFileSync(
+        "./results/aptos_gas.csv",
+        `uq64x64;testToU128;${result.receipt.gasUsed}\n`
+      );
     });
 
     it("should call testMul", async function () {

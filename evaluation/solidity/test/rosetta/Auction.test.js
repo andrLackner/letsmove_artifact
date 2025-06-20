@@ -45,19 +45,19 @@ contract("Auction", function (accounts) {
         from: user1,
         value: 3000,
       });
-      fs.appendFileSync(
-        "./results/rosetta_gas.csv",
-        `auction;bid;${result.receipt.gasUsed}\n`
-      );
+      // fs.appendFileSync(
+      //   "./results/rosetta_gas.csv",
+      //   `auction;bid;${result.receipt.gasUsed}\n`
+      // );
     });
     it("User1 could withdraw", async function () {
       let result = await this.auction.withdraw({
         from: user1,
       });
-      fs.appendFileSync(
-        "./results/rosetta_gas.csv",
-        `auction;withdraw;${result.receipt.gasUsed}\n`
-      );
+      // fs.appendFileSync(
+      //   "./results/rosetta_gas.csv",
+      //   `auction;withdraw;${result.receipt.gasUsed}\n`
+      // );
     });
     it("Seller could end the auction", async function () {
       // forward VM time

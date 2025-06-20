@@ -44,5 +44,8 @@ ENV PATH="/app/scripts/:$PATH"
 
 VOLUME [ "/app/hardhat-test/contracts", "/app/hardhat-test/test", "/app/hardhat-test/libs", "/app/hardhat-test/results"]
 
-ENTRYPOINT []
 WORKDIR /app/hardhat-test
+COPY ./docker/evaluate.bash ./evaluate.bash
+RUN chmod u+x evaluate.bash
+
+ENTRYPOINT []

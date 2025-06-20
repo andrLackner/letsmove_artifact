@@ -11,6 +11,7 @@ contract("Vesting", async function (accounts) {
       this.vesting = await Vesting.new(user1, now, duration, {
         from: deployer,
       });
+      fs.appendFileSync("./results/rosetta_gas.csv", `vesting;init;0\n`);
     });
     describe("After deployment", async function () {
       it("Anyone could release", async function () {

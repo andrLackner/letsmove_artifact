@@ -27,7 +27,7 @@ contract("Crowdfund", async function (accounts) {
         });
         fs.appendFileSync(
           "./results/rosetta_gas.csv",
-          `crowdfund;join;${result.receipt.gasUsed}\n`
+          `crowdfund;donate;${result.receipt.gasUsed}\n`
         );
       });
       it("User2 could donate", async function () {
@@ -37,7 +37,7 @@ contract("Crowdfund", async function (accounts) {
         });
         fs.appendFileSync(
           "./results/rosetta_gas.csv",
-          `crowdfund;join;${result.receipt.gasUsed}\n`
+          `crowdfund;donate;${result.receipt.gasUsed}\n`
         );
       });
       it("Deployer could withdraw", async function () {
@@ -73,7 +73,10 @@ contract("Crowdfund", async function (accounts) {
           from: user1,
           value: payableValue,
         });
-        // console.log('Join cost: ', result.receipt.gasUsed);
+        fs.appendFileSync(
+          "./results/rosetta_gas.csv",
+          `crowdfund;donate;${result.receipt.gasUsed}\n`
+        );
       });
       it("User2 could donate", async function () {
         let result = await this.crowdfund.donate({

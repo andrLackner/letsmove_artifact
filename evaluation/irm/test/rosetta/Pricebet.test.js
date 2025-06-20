@@ -131,12 +131,6 @@ contract("Pricebet", function (accounts) {
         { from: deployer }
       );
 
-      // Cost of creating the bet
-      fs.appendFileSync(
-        "./results/rosetta_gas.csv",
-        `pricebet;create;${result.receipt.gasUsed}\n`
-      );
-
       let joinEncoding = pricebetInterface.encodeFunctionData("join", [
         user1,
         1000,
